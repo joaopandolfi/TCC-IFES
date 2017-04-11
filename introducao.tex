@@ -1,0 +1,78 @@
+%tabulacao para a listagem
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\newcommand{\tab}[1]{\hspace{.2\textwidth}\rlap{#1}}
+%inicio do capitulo
+\chapter[Introdução]{Introdução}
+
+%\textit{} // Coloca em italico
+%\cite{} //Cita autor
+%\ref{} //Cita figura
+
+Doenças complexas são poligênicas e multifatoriais, ou seja, além de serem causadas por mutações em mais de um gene, também são influenciadas por fatores ambientais \cite{davey-mith}. Como título de informação, alguns exemplos de doenças complexas são doença de Parkinson e esclerose múltipla \cite{Hunter-2005}. Quanto aos fatores genéticos, devido ao fato destas doenças serem poligênicas, as mutações podem levar a uma propagação não natural de informação e sinais, de forma que afete outros genes e/ou mecanismos dependentes dos que sofreram determinada mutação. 
+
+
+% \par
+% \begin{figure}[ht!]
+% \centering
+% \includegraphics[width=150mm]{Images/pesquisaCrescimentoNumSmarth.png}
+% \caption{Compras feitas através de dispositivos móveis. Imagem retirada de \cite{MarketingCharts2014}} \label{imagemDigitalCap1}
+% \end{figure}
+
+
+Uma forma de estudar este tipo de doença, é analisar os transcritos gerados pela transcrição dos genes, de forma a buscar uma relação de co-expressão, tendo como objetivo encontrar genes que influenciam na doença em questão. Uma forma de utilizar estes dados, é fazer a modelagem em forma de rede, onde cada nó representa um gene, as arestas representam a co-expressão genica, e ao utilizar a topologia de redes com pesos, o fator de co-expressão torna-se então o peso, determinando assim o grau de relacionamento entre dois nós, com essa abordagem, é possível aplicar conceitos e propriedades de grafos no problema, devido ao fato de ele estar modelado em rede.
+Outra forma de estudar as doenças poligênicas, é analisar as interações entre proteínas (\textit{PPI – Protein-Protein Interaction}), onde também é aplicada a abordagem de redes para investigação da doença, no qual é chamada de hipótese da \textit{Network Medicine} \cite{barabasi}. Este modelo leva em conta o nível de interação entre as proteínas e quais foram os genes responsáveis por gerá-las, podendo assim ter um mapeamento gênico e proteico ao mesmo tempo.
+
+Estas duas abordagens citadas englobam conceitos de redes complexas, onde têm-se a representação de dados e relações entre eles em forma de grafos, sejam eles com pesos ou não (em sua grande maioria são utilizados grafos direcionados e com peso), esta abordagem permite utilizar conceitos fundamentados sobre teoria de grafos e algoritmos consolidados para análise do problema, ganhando-se assim mais ferramentas para tratamento do modelo em questão.
+Como por exemplo, algoritmos de caminho mínimo, onde visam encontrar o menor caminho entre dois nós, na genética, cada aresta é uma relação entre os genes (\textit{nós}), portanto, quanto o menor caminho entre dois genes (\textit{nós}), mais próxima é a sua relação. 
+
+De acordo com os conceitos apresentados, existem diversas abordagens para tratar doenças poligênicas, dentre elas, destaca-se o método NERI que apresentou bons resultados de replicabilidade. Este é um método que baseia-se em importância relativa, ou seja, fundamenta-se em nós sementes para o seu funcionamento, onde estes são genes sabidamente reconhecidos como importantes. Em vista desta abordagem, este método carece de uma análise de robustez, o que significa analisar o quão dependente dos nós sementes o método é, de forma a encontrar um coeficiente de confiança, para assim gerar uma segurança na utilização da ferramenta, porém, para encontrar estes coeficientes é necessário observar o comportamento do método quando há retiradas de nós sementes da rede de entrada.
+
+Ao analisar o código fonte do programa em questão, identificamos a necessidade de reestruturação do mesmo, de forma que fique mais modularizado, facilitando a manutenção e adição de novas funcionalidades futuras, também temos como objetivo facilitar e incentivar a colaboração de pesquisadores no desenvolvimento futuro da ferramenta, pelo fato de o código ser aberto, ou seja, qualquer um que estiver disposto a contribuir terá acesso ao código fonte.
+Como a ferramenta foi desenvolvida para ser utilizada por biólogos, identificamos também, a necessidade de desenvolver uma interface gráfica para facilitar e disseminar o uso. Atualmente a utilização é feita somente por linha de comando no terminal, o que requer um nível de conhecimento mínimo. A interface gráfica tem como objetivo viabilizar o uso do programa para biólogos não familiarizados em utilizar programas por linhas de comando em terminal, potencializando assim o alcance da ferramenta e incentivando o uso de métodos computacionais por biólogos.
+
+
+%Exemplo de imagem
+
+%\textbf{\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=130mm]{Images/debit.jpg}
+%\caption {A evolução das máquinas de cartão. \label{adas}}
+%\flushleft{Fonte: Imagem de retirada e adaptada de \cite{evolu}.}
+%\end{figure}}
+
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=130mm]{Images/debit.jpg}
+%\caption {A evolução das máquinas de cartão. \label{Evolucao}}
+%\flushleft{Fonte: Imagem de retirada e adaptada de \cite{evolu}.}
+%\end{figure}
+
+
+%\section{OCR} // Criando sessao
+
+
+
+\section{Objetivos}
+\subsection{Objetivo Geral}
+\begin{center}
+  \begin{enumerate}
+  \item {Analisar robustez do método NERI para avaliar o impacto da retirada de alguns genes sementes.}
+
+  \end{enumerate}
+\end{center}
+
+\subsection{Objetivos Específicos}
+\begin{center}
+  \begin{enumerate}
+  \item {Refatorar o código para facilitar a manutenção, utilização e contribuição externa da comunidade de usuários e desenvolvedores.}
+    \item {Implementar os algoritmos de validação cruzada e \textit{leave-one-out} aplicados ao método NERI.}
+    \item{Implementar interface gráfica para facilitar o uso da ferramenta, visando torná-la mais intuitiva e amigável aos pesquisadores da área biológica.}
+  \item{Desenvolver um módulo de \textit{Template Matching}.}
+    \item {Analisar a robustez do método NERI verificando sua dependência em relação aos nós sementes.}
+  \end{enumerate}
+\end{center}
+
+
+\section{Organização do trabalho}
+Escrever
+

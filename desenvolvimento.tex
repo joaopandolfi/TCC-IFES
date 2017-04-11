@@ -1,0 +1,153 @@
+\chapter[Metodologia]{Metodologia}
+
+Para análise de robustez do método NERI foram utilizados conceitos de validação baseados na alteração dos parâmetros de entrada, de forma que sejam analisados os resultados de saída, para entender o impacto causado devido a estas alterações, no qual consistem na remoção ou não inserção de elementos chaves para o input do programa. 
+
+O processo de validação foi separado em etapas para melhor entendimento e apresentar a temporalidade e cadenciamento dos processos.
+
+\subsection{Materiais}
+
+Este trabalho utilizou a base de dados <BASE DE DADOS AQUI> que consiste em expressões gênicas de pessoas portadoras da doença <ESQUIZOFRENIA>, estes dados podem ser encontrados <AQUI>. Esta base de dados em específico, foi selecionada esta base devido ao fato de ter sido utilizada na tese de doutorado no qual este trabalho se baseia e se referencia, assim os dados obtidos podem ser comparados com os encontrados e apresentados pelo autor, desta forma evitando o enviesamento do resultado por diferença de experimentação.
+
+O programa NERI também recebe dados de rede de integração proteína proteína (Protein Protein Interaction – PPI), onde os mesmos também foram mantidos os originais utilizados pelo autor, podendo ser encontradas <AQUI>.
+
+Como entrada do sistema também são definidos os Genes Sementes, onde estes são os genes onde há certeza da sua relação com a doença analisada em questão, a base de dados original pode ser encontrada <AQUI>. 
+
+
+\subsection{Escolha da variação dos genes sementes}
+Neste trabalho, os genes sementes foram escolhidos para variação como parâmetro de entrada, onde o objetivo é identificar o impacto gerado na rede de correlação gênica e no resultado final exibido pelo programa NERI, assim podendo calcular a dependência e sensibilidade do método em relação a qualidade e quantidade de dados dos nós sementes.
+
+
+\subsection{Escolha dos métodos de validação}
+Os métodos de validação adotados foram selecionados pelas suas caraterísticas de estudo do problema em questão, não podendo deixar margem para enviesamento dos resultados e serem capazes de explorar comportamentos diferentes nos resultados do experimento. Os modelos de validação escolhidos foram: \textit{Leave one Out} e \textit{Cross Validation}.
+
+
+\subsubsection{Leave one out}
+<VERIFICAR SE FICA  AQUI MESMO>
+Leave one out foi aplicado no agrupamento de genes sementes, onde cada execução do programa está faltando um gene semente diferente, de forma que sempre haja a mesma quantidade de genes em cada execução e garantindo que todos tenham ficado de fora pelo menos uma vez, assim sendo, o número final de execuções e amostras de entrada sejam a quantidade total de genes sementes menos 1 (N – 1 | N = total de genes).
+
+Com este método, é possível descobrir, se a falta de um único gene semente é responsável por alterar significantemente o resultado final do método NERI. Desta forma, podendo analisar se o método em questão é sensível a retiradas de nós sementes. 
+O Leave one Out também permite a análise de importância relativa dos genes sementes, onde aquele que causar maior impacto no resultado final indica uma importância relativa maior em relação aos outros. 
+
+
+Porém há outra análise importante que deve ser feita mas o Leave One Out não é capaz de prover, é se a quantidade de nós removidos influenciam diretamente no resultado. Para observar este aspecto, utilizamos o método Cross Validation, no qual, suas características se moldam mais a esta ótica de estudo.
+
+
+\subsubsection{Cross Validation}
+
+Este método foi adotado pela sua característica principal, organização de agrupamentos de dados de entrada. Com esta característica chave, buscou-se estudar o comportamento da rede quando há a remoção de mais de um gene semente do agrupamento original de entrada.
+
+Com a formação de agrupamentos de genes sementes aleatórios e de tamanhos variados, pôde-se observar o comportamento do método analisado em situações variadas, buscando o ponto de ruptura de proximidade ao resultado original, assim estimando um grau de dependência e sensibilidade a uma quantidade ou arranjo de genes sementes como parâmetro de entrada.
+
+O fato de os agrupamentos possuírem arranjos de genes diferentes, abre-se a possibilidade de estudo sobre a eficácia de um ou mais genes semente juntos sobre o resultado final, ou seja, se um arranjo específico promove melhores resultados que os demais, sendo estes de mesmo tamanho.
+
+\subsection{Preparação dos experimentos}
+
+Após determinado os métodos de validação e a base de dados a ser aplicada para análise da ferramenta, o próximo passo é a preparação do experimento a ser desenvolvido, no caso, como a base dados utilizada apresenta 38 genes sementes, a regulação dos parâmetros de remoção para preparação do experimento deve levar em conta diretamente esta quantidade.
+
+Os genes em questão são:
+<TABELA DE GENES AQUI>
+
+Estes dados são os brutos de entrada, como o método NERI faz a integração gênica com o GWAS, alguns destes genes, apresentados na tabela acima, não tem representação e ficam de fora, resultando em 30 genes de entrada.
+
+Os genes resultantes são
+<TABELA DOS 30 GENES AQUI>
+
+\subsubsection{Aplicação do método Leave one out}
+
+Para a validação utilizando o método Leave One Out, a preparação do experimento consistiu em gerar entradas para o NERI de forma que cada amostra de entrada tenha um gene a menos do experimento original, onde exista uma entrada para cada gene removido, ou seja, em uma amostra de 38 genes de entrada, temos 37 combinações de entradas possíveis. 
+Assim sendo, dado um conjunto de N elementos, a quantidade de entradas possíveis é N-1.
+
+<IMAGEM REPRESENTATIVA>
+
+A aplicação direta no sistema consistem em cada execução independente do programa, o agrupamento de dados de entrada faltar um gene semente diferente, de forma que sempre haja a mesma quantidade de genes em cada execução e garantindo que todos os genes tenham ficado de fora pelo menos uma vez no total de execuções independentes.
+
+<Para preparação destas entradas, foi desenvolvido um script em Python 3.X para automatização do processo e para evitar falha humana.>
+
+<Script Python GERA_LOO>
+
+Para ilustração do experimento, segue o exemplo abaixo:
+Temos a amostra original A sendo: 1,2,3,4,5
+Os subconjuntos gerados utilizando o conceito de Leave One Out são:
+As1: 2,3,4,5
+As2: 1,3,4,5
+As3: 1,2,4,5
+As4: 1,2,3,4
+
+<IMAGEM ToyExampleLOO1>
+
+\subsubsection{Aplicação do método Cross Validation}
+
+Para melhor aproveitamento do método escolhido, o primeiro passo a ser dado, é a definição de tamanho dos agrupamentos de dados de entrada para cada bateria de execuções.
+Levando em consideração a quantidade de genes de entrada total do experimento, 30 após a integração com o GWAS, definiu-se que as remoções seriam feitas em relação a porcentagem da amostra original, sendo as porcentagens definidas 10\% (3 genes), 20\% (6 genes), 30\% (9 genes) e 40\% (12 genes).
+
+Com as porcentagens de remoção definidos, determinou-se a quantidade de agrupamentos de dados de entrada a serem executados para cada etapa, onde estão descritos na tabela abaixo
+
+<COLOCAR EM TABELA>
+10\% --- 50 execuções
+20\% --- 50 execuções
+30\% --- 50 execuções
+40\% --- 50 execuções
+
+Cada agrupamento deve ser diferente do outro, de forma que o conjunto de genes removidos não se repita dentro de cada etapa, em vista que, caso isso aconteça, a análise final será comprometida por possuir resultados iguais provenientes de entradas de dados iguais.
+
+<Para garantir a diferença entre os dados de entrada, foi desenvolvido um script em Python 3.x para automatização da tarefa evitando falha humana no processo.>
+<Script GERA_CVV>
+
+Para ilustração do experimento, segue o exemplo abaixo:
+
+Temos a amostra original A, sendo: 0,1,2,3,4,5,6,7,8,9.
+Determinado o fator de remoção em 20%, e a quantidade de dados de entrada em 5.
+Dado 20% de 10 elementos, temos fator de remoção = 2 elementos.
+Temos os subconjuntos:
+As1 = 0,1,2,3,4,5,6,7
+As2 = 0,1,2,3,4,5,6,8
+As3 = 0,1,2,3,4,5,6,9
+As4 = 1,2,3,4,5,6,7,8
+As5 = 2,3,4,5,6,7,8,9
+
+Sendo os removidos
+Rem As1 = 8,9
+Rem As2 = 7,9
+Rem As3 = 7,8
+Rem As4 = 0,9
+Rem As5 = 0,1 
+
+<IMG_TOY_EXAMPLE_CV>
+
+Após os agrupamentos de dados de entrada serem preparados, o programa principal é executado individualmente para cada agrupamento. Totalizam-se 200 execuções individuais para a aplicação da validação cruzada.
+
+
+\subsection{Execução dos experimentos}
+
+Nesta etapa, os experimentos encontram-se preparados para execução direta no programa principal que implementa o método NERI, a somatória de execuções totais a serem efetuadas com as técnicas de validação escolhidas consiste em 230 chamadas separadas.
+Devido ao fato de o programa realizar cálculos demorados, houve a necessidade de automatização do processo de execução, onde foi desenvolvido um script em Shell (linha de comando Linux), para efetuação do trabalho. <REF AO APENDICE>
+Um outro quesito no qual influenciou diretamente na execução dos experimentos, foi o fato de o programa original não possuir um esquema de diretórios robusto e chamadas pelo terminal preparada para este tipo de utilização em massa, acarretou na alteração estrutural do programa original para organização dos dados de entrada e dos resultados apresentados, onde também foi desenvolvida uma interface gráfica e uma interface em linha de comando (CLI), para facilitar a utilização por pessoas que não tem familiaridade com este tipo de utilização de programas.
+
+
+
+%Exemplo codigo no TEX
+%\begin{lstlisting}[caption={Código fonte do método getBlockStatic da classe %Tools.},label=getBlockStatic,language=Java]
+%public static List<Rect> getBlockStatic(Bitmap bmp, int nr, int nrTotal) {
+%    Mat mat = bitmapToMat(bmp);
+%    Size size = mat.size();
+%    List<Rect> list = new ArrayList<>();
+%    int left, top, rigth, bottom;
+%    for (int i = 0; i < nrTotal; i++) {
+%        top = 0;
+%        if (i == 0) {
+%            left = 1;
+%        } else {
+%            left = 1 + (mat.cols() / nrTotal * i);
+%        }
+%        bottom = mat.rows();
+%        rigth = left + (mat.cols() / nrTotal);
+%        list.add(new Rect(left, top, rigth - 1, bottom - 1));
+%    }
+%    List<Rect> result = new ArrayList<>();
+%    for (int j = nr - 1; j < 4; j++) {
+%        result.add(list.get(j));
+%    }
+%    list = null;
+%    return result;
+%}
+%\end{lstlisting}

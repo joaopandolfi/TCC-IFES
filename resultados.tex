@@ -1,0 +1,36 @@
+\chapter[Experimentos, Resultados e Discussão]{Experimentos, Resultados e Discussão}
+
+\section{Análise dos resultados}
+
+	\subsection{Escolha dos métodos de análise dos resultados}
+		\subsubsection{Correlação de postos de spearman}
+		
+		- Calcular correlção de cada seed com a correlação das listas (Leave One Out) - [Impacto do Seed na priozação]
+ \-> Tem um cara que calcula medidas de rede (Betwness, Bridgnes e a porra toda)
+ \-> Intersecção * Correlação de Spearman
+
+- Definir a medida chamada impacto (O quanto ficou distante o nó), ou seja, o quanto o gene semene fez diferença (Listas priorizadas)
+ \-> Checar com todas as medidas de rede (Impacto x Medidas de centralidade)
+
+
+\section{Resultados}
+
+
+\subsection{Dados computacionais}
+Os fatores envolvidos no processo de execução dos experimentos, foram as configurações da máquina no qual foi executada e a disponibilidade de tempo de máquina.
+As configurações da maquina no qual foram executados os experimentos são as descritas abaixo:
+Processador: i7 5 geração <Olhar numeração>
+Memória: 16 Gb <Olhar marca e velocidade>
+Armazenamento: 50 Tb HD.
+ 
+Pelo fato de o programa que implementa o método NERI ainda não utilizar paralelismo (utilização de mais de um núcleo de processamento), foram executados 4 instâncias separadas ao mesmo tempo, durante todo a etapa de execução do experimento.
+
+\subsubsection{Consumo de CPU:}
+Cada instância ocupou 100\% de processamento de um núcleo físico presente no processador, como o disponível possui 4 núcleos físicos e foram executadas 4 instâncias simultaneamente, o consumo de cpu foi para 100\% do total presente.
+
+\subsubsection{Consumo de Memória:}
+Cada instância em execução consumiu em média 1,5 Gb.
+
+\subsubsection{Uso de disco:}
+Devido ao fato de os experimentos serem executados em modo Debug, a escrita em arquivo permaneceu constante durante a maior parte do tempo de execução, aumentando somente nos momentos de escrita de resultados.
+Os valores consistem em: 78kbs e 1Mbs.

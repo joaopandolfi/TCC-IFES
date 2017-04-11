@@ -1,0 +1,165 @@
+\chapter{Referencial Teórico}
+
+\index{Referencial Teórico }
+	 
+% \section{Fundamentos Teóricos}
+\par
+    Para melhor compreensão do conteúdo apresentado neste trabalho, este capítulo tem como objetivo explicar os fundamentos conceituais apresentados, de forma que os conceitos fundamentais possam ser compreendidos para a evolução do conteúdo.
+    
+\section{Redes}
+
+\subsection{Grafos}
+Grafos são formas de estruturação de dados ligados, onde um dado elemento é denominado nó ou vértice, a sua relação com outro elemento é chamada de aresta.
+Para exemplificação, tome como nós, duas cidades A e B, as estradas que ligam estas cidades representam as arestas, desta forma pode-se modelar as ligações entre as cidades como um grafo.
+
+%Imagem
+
+\subsection{Grafos com pesos}
+São grafos que possuem um grau de importância (também chamado de peso) em cada aresta, este grau de importância tem significado apenas em nível de abstração, o que significa que não carrega nenhum significado predefinido, geralmente, exprime o quão relacionado um nó está com outro.
+
+%Imagem
+
+\subsection{Passeio}
+É uma sequência específica de nós ligados, partindo de p e chegando em g. O comprimento do passeio é determinado pelo número de arestas.
+
+\subsection{Caminho}
+Assim como o passeio, é uma sequência específica de nós ligados, porém este não possui vértices repetidos, ou seja, não passa duas vezes pelo mesmo vértice. A distância do caminho é definida pela soma dos pesos em suas arestas, para grafos sem peso, a distância é definida pela quantidade de arestas presentes no caminho, implicitamente definindo o peso de cada aresta como 1 e executando a soma das mesmas. 
+
+%Imagem
+
+\subsection{Distância}
+Em grafos com peso, é definida pela soma dos pesos das arestas em um determinado caminho.
+Em grafos sem peso, é definida como a quantidade de arestas (aresta peso 1) em um determinado caminho.
+
+%Imagem
+
+
+\subsection{Hub}
+Hub é um nó que possui muitas arestas, ou seja, um nó que se liga a muitos outros.
+%Imagem
+
+
+\subsection{Bridge}
+O quão ponte o nó é em relação a dois Hubs, ou seja, se um nó conectar dois Hubs o mesmo é definido como bridge
+%Imagem
+
+
+\subsection{Menor caminho ou caminho mínimo}
+Quando se trata de grafos o \textbf{caminho mínimo} é aquele que possui a menor distância entre dois nós (p e g). \cite{dikstra-floyd} [Dijkstra, 1959; Floyd, 1962]
+%Imagem
+
+\subsection{Redes complexas}
+Explicação
+
+%Imagem
+
+% ==== FUNDAMENTOS BIOLOGICOS ====
+
+\section{Fundamentos biológicos}
+
+\subsection{Transcrição}
+Conceito de transcrição e fundamento da genomica
+
+%imagem
+
+\subsection{Coexpressão de transcritos}
+Explicação
+
+\subsection{Doenças multifatoriais}
+epresentam um fenótipo ou determinam a doença.
+O que significa, a doença não é composta por um único pedaço de DNA sequenciado, mas sim por vários pedaços de locais separados. \cite{barabasi}
+
+%Imagem
+
+% ==== REDES BIOLÓGICAS ====
+
+\section{Redes Biológicas}
+
+\subsection{Representação de genes em rede}
+Texto
+
+\subsection{Relação de menor caminho}
+Texto
+
+\subsection{Co-expressão como peso}
+Texto
+
+\subsection{Conceito de genes e nós sementes}
+Texto
+
+% ==== ANÁLISE DE ROBUSTEZ ====
+
+\section{Métodos de análise de robustez}
+
+\subsection{Conceito de robustez}
+Texto
+
+\subsection{Importância da análise}
+Texto
+
+\subsection{Método de validação cruzada}
+O método de validação cruzada, também chamado de estimativa de rotação, é uma técnica desenvolvida para avaliar a capacidade de generalização de um determinado modelo, em relação a um conjunto de dados. Este modelo analisa os resultados estatísticos de um agrupamento de dados definido, onde tem sido amplamente empregado em problemas no qual o objetivo da modelagem é  predição de dados, isto se dá por seu conceito principal consistir no particionamento dos dados de entrada em subconjuntos mutualmente exclusivos, onde uma parte destes serão revezados na alimentação do modelo a ser validado (grupo de treinamento), e a outra parte utilizados na validação.
+A definição do método consiste na separação dos dados em subconjuntos, de forma que os elementos sejam diferentes em todos subconjutos, feito o agrupamento, estes são revezados na alimentação do modelo a ser validado, em cada passo faz-se uma análise estatística dos resultados obtidos.
+<EQ MATEMATICA>
+<referencia>
+
+
+
+\subsection{Método Leave-one-out}
+
+Leave-one-out é um modelo de validação cruzada, diferencia-se na formação de agrupamentos, neste modelo a quantidade de subconjutos é a quantidade de elementos presentes, desta forma cada subconjunto possui somente um elemento.
+<DESENVOLVER>
+<EQ MATEMATICA>
+<REFERENCIA>
+
+% ==== TRABALHOS CORRELATOS ====
+
+\section{Trabalhos correlatos}
+
+\subsection{Teses}
+
+\subsubsection{Tese de doutorado Sérgio Nery Simões}
+\cite{NERI}
+Este trabalho é a referencia principal do meu projeto, pelo fato do método no qual analisei a robustez é apresentado e descrito nele.
+
+Para entender doenças complexas, é necessário encontrar os genes que se relacionam com a mesma. Com a evolução em larga escala das tecnologias de sequenciamento do genoma e das medições de transcritos, assim como o conhecimento da interação presente entre proteína-proteína (PPI – Protein Protein Interaction), a pesquisa sobre doenças complexas vêm se tornando cada vez mais comum. Ao basear-se no paradigma do Network Medicine, as redes de interação proteína-proteína têm sido utilizadas para enfatizar os genes relacionados à doenças complexas levando em conta fatores topológicos. Porém este método é afetado diretamente pela literatura disponível, onde proteínas mais estudadas tendem a ter mais conexões na rede, fazendo com que diminua a qualidade dos resultados. Sendo assim, métodos que utilizam somente redes PPI não fornecem dados dinâmicos e específicos, dado que a topologia da rede não é exclusiva para uma única doença. No trabalho em questão, foi desenvolvido um método que prioriza genes e vias biológicas relacionados a uma dada doença complexa, através da abordagem de não somente redes PPI mas também transcritômica e genômica, sendo os dados integrados em uma única rede. Após a integração e construção da rede, aplicou-se o conceito da Network Medicine, encontrando caminhos mínimos que possuam maior co-expressão entre seus genes. Com este modelo foi desenvolvido dois escores de ranqueamento, onde um prioriza genes com maior alteração entre suas pontuações em cada condição, e o outro privilegia os genes com a maior soma destas pontuações. Desta forma a aplicação do método em a três estudos envolvendo de expressão da doença esquizofrenia, recuperou com sucesso genes diferencialmente co-expressos em duas condições diferentes, e juntamente evitou os erros de literatura presentes na rede PPI. Em paralelo, melhorou substancialmente a replicação de resultados pelo método aplicado aos três estudos, onde por métodos convencionais, não atingiam uma replicabilidade satisfatória.
+
+
+\subsection{Redes complexas}
+	\subsubsection{Exploring complex networks}
+	\cite{Strogatz}
+	
+	\subsubsection{Algorithms for Estimating Relative Importance in Networks}
+	\cite{White-Scott}
+	
+	\subsubsection{Linked}
+	\cite{linked-barabasi}
+	
+\subsection{Biologia}
+
+	\subsubsection{DNA methylation: a form of epigenetic control of gene expression}
+	\cite{Lim-Derek}
+	
+	\subsubsection{DNA methylation and its basic function}
+	\cite{Moore-lisa}
+	
+\subsection{Redes Biológicas}
+	\subsubsection{Using graph theory to analyze biological networks}
+	\cite{Pavlopoulos}
+	Este paper contém os conceitos fundamentais de redes biológicas e uso de grafos para sua análise.
+<Descrever artigo>
+
+
+	\subsubsection{An Integrative Systems Medicine Approach to Mapping Human Metabolic Diseases}
+	\cite{barabasi-lazlo}
+	
+	\subsubsection{Exploring the human diseasome: The human disease network }
+	\cite{goh-kwang}
+	
+	\subsubsection{Network Medicine}
+	\cite{barabasi}
+	
+	Neste trabalho é definido o conceito de Network Medicine, este no qual baseia-se o método NERI.
+<Descrever artigo>
+
+
