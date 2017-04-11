@@ -4,7 +4,7 @@ Para análise de robustez do método NERI foram utilizados conceitos de validaç
 
 O processo de validação foi separado em etapas para melhor entendimento e apresentar a temporalidade e cadenciamento dos processos.
 
-\subsection{Materiais}
+\section{Materiais}
 
 Este trabalho utilizou a base de dados <BASE DE DADOS AQUI> que consiste em expressões gênicas de pessoas portadoras da doença <ESQUIZOFRENIA>, estes dados podem ser encontrados <AQUI>. Esta base de dados em específico, foi selecionada esta base devido ao fato de ter sido utilizada na tese de doutorado no qual este trabalho se baseia e se referencia, assim os dados obtidos podem ser comparados com os encontrados e apresentados pelo autor, desta forma evitando o enviesamento do resultado por diferença de experimentação.
 
@@ -13,15 +13,15 @@ O programa NERI também recebe dados de rede de integração proteína proteína
 Como entrada do sistema também são definidos os Genes Sementes, onde estes são os genes onde há certeza da sua relação com a doença analisada em questão, a base de dados original pode ser encontrada <AQUI>. 
 
 
-\subsection{Escolha da variação dos genes sementes}
+\section{Escolha da variação dos genes sementes}
 Neste trabalho, os genes sementes foram escolhidos para variação como parâmetro de entrada, onde o objetivo é identificar o impacto gerado na rede de correlação gênica e no resultado final exibido pelo programa NERI, assim podendo calcular a dependência e sensibilidade do método em relação a qualidade e quantidade de dados dos nós sementes.
 
 
-\subsection{Escolha dos métodos de validação}
+\section{Escolha dos métodos de validação}
 Os métodos de validação adotados foram selecionados pelas suas caraterísticas de estudo do problema em questão, não podendo deixar margem para enviesamento dos resultados e serem capazes de explorar comportamentos diferentes nos resultados do experimento. Os modelos de validação escolhidos foram: \textit{Leave one Out} e \textit{Cross Validation}.
 
 
-\subsubsection{Leave one out}
+\subsection{Leave one out}
 <VERIFICAR SE FICA  AQUI MESMO>
 Leave one out foi aplicado no agrupamento de genes sementes, onde cada execução do programa está faltando um gene semente diferente, de forma que sempre haja a mesma quantidade de genes em cada execução e garantindo que todos tenham ficado de fora pelo menos uma vez, assim sendo, o número final de execuções e amostras de entrada sejam a quantidade total de genes sementes menos 1 (N – 1 | N = total de genes).
 
@@ -32,7 +32,7 @@ O Leave one Out também permite a análise de importância relativa dos genes se
 Porém há outra análise importante que deve ser feita mas o Leave One Out não é capaz de prover, é se a quantidade de nós removidos influenciam diretamente no resultado. Para observar este aspecto, utilizamos o método Cross Validation, no qual, suas características se moldam mais a esta ótica de estudo.
 
 
-\subsubsection{Cross Validation}
+\subsection{Cross Validation}
 
 Este método foi adotado pela sua característica principal, organização de agrupamentos de dados de entrada. Com esta característica chave, buscou-se estudar o comportamento da rede quando há a remoção de mais de um gene semente do agrupamento original de entrada.
 
@@ -40,7 +40,7 @@ Com a formação de agrupamentos de genes sementes aleatórios e de tamanhos var
 
 O fato de os agrupamentos possuírem arranjos de genes diferentes, abre-se a possibilidade de estudo sobre a eficácia de um ou mais genes semente juntos sobre o resultado final, ou seja, se um arranjo específico promove melhores resultados que os demais, sendo estes de mesmo tamanho.
 
-\subsection{Preparação dos experimentos}
+\section{Preparação dos experimentos}
 
 Após determinado os métodos de validação e a base de dados a ser aplicada para análise da ferramenta, o próximo passo é a preparação do experimento a ser desenvolvido, no caso, como a base dados utilizada apresenta 38 genes sementes, a regulação dos parâmetros de remoção para preparação do experimento deve levar em conta diretamente esta quantidade.
 
@@ -52,7 +52,7 @@ Estes dados são os brutos de entrada, como o método NERI faz a integração g�
 Os genes resultantes são
 <TABELA DOS 30 GENES AQUI>
 
-\subsubsection{Aplicação do método Leave one out}
+\subsection{Aplicação do método Leave one out}
 
 Para a validação utilizando o método Leave One Out, a preparação do experimento consistiu em gerar entradas para o NERI de forma que cada amostra de entrada tenha um gene a menos do experimento original, onde exista uma entrada para cada gene removido, ou seja, em uma amostra de 38 genes de entrada, temos 37 combinações de entradas possíveis. 
 Assim sendo, dado um conjunto de N elementos, a quantidade de entradas possíveis é N-1.
@@ -75,7 +75,7 @@ As4: 1,2,3,4
 
 <IMAGEM ToyExampleLOO1>
 
-\subsubsection{Aplicação do método Cross Validation}
+\subsection{Aplicação do método Cross Validation}
 
 Para melhor aproveitamento do método escolhido, o primeiro passo a ser dado, é a definição de tamanho dos agrupamentos de dados de entrada para cada bateria de execuções.
 Levando em consideração a quantidade de genes de entrada total do experimento, 30 após a integração com o GWAS, definiu-se que as remoções seriam feitas em relação a porcentagem da amostra original, sendo as porcentagens definidas 10\% (3 genes), 20\% (6 genes), 30\% (9 genes) e 40\% (12 genes).
@@ -117,7 +117,7 @@ Rem As5 = 0,1
 Após os agrupamentos de dados de entrada serem preparados, o programa principal é executado individualmente para cada agrupamento. Totalizam-se 200 execuções individuais para a aplicação da validação cruzada.
 
 
-\subsection{Execução dos experimentos}
+\section{Execução dos experimentos}
 
 Nesta etapa, os experimentos encontram-se preparados para execução direta no programa principal que implementa o método NERI, a somatória de execuções totais a serem efetuadas com as técnicas de validação escolhidas consiste em 230 chamadas separadas.
 Devido ao fato de o programa realizar cálculos demorados, houve a necessidade de automatização do processo de execução, onde foi desenvolvido um script em Shell (linha de comando Linux), para efetuação do trabalho. <REF AO APENDICE>
