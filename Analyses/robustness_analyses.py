@@ -178,6 +178,12 @@ dfX = analyse_CV(CV, df_cmp, TOP, 'X',
 dfS = analyse_CV(CV, df_cmp, TOP, 'S',
                columns_order, key, print_table=True)
 
+dfLooX = analyse_CV(LOO, df_cmp, TOP, 'X',
+               columns_order, key, print_table=True)
+
+
+print("######################################################################")
+print(dfLooX)
 
 plot_analyse(dfX, 'X')
 plot_analyse(dfS, 'S')
