@@ -168,11 +168,11 @@ def plot_df(df_top, var, top, s_overlap, s_out,
     else:
         min_value = 0.5
     df_plot = pd.DataFrame(array_plot,OUT)
+    df_plot.plot.bar(legend=False)
+    plt.axis([-1, len(OUT), min_value, 1.0])
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    df_plot.plot.bar(legend=False)
-    plt.axis([-1, len(OUT), min_value, 1.0])
     filename = 'fig_LOO_'+var+'_'+str(top)+'.pdf'
     plt.savefig(filename, format='pdf')
     plt.close()
