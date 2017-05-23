@@ -69,16 +69,14 @@ def compute_intersection_correlation(dirCV, partition_out,
         print df_result, '\n'
     return df_result
 
-
 #------------------------------------------------------------------------------
 
-def analyse_CV(CV, df_cmp, TOP, col_rank,
-                    columns_order, key='GENE', print_table=False):
-    #
+def analyse(Experiments, df_cmp, TOP, col_rank, pattern_file_nodes,
+                    columns_order, key='GENE', print_table=False,unique_experiment=True):
     df_all_results = create_result_dataframe(0, [], columns_order)
-    for dirCV in CV['in']:
-        path_in  = dir_in  + dirCV
-        path_out = dir_out + dirCV
+    for dirLOO in LOO['in']:
+        path_in  = dir_in  + dirLOO
+        path_out = dir_out + dirLOO
         #
         #df_used     = pd.read_table(path_in + suffix_seeds, header=None)
         df_excluded = pd.read_table(path_in + suffix_exclude, header=None)
@@ -88,13 +86,17 @@ def analyse_CV(CV, df_cmp, TOP, col_rank,
         #
         files = glob.glob(path_out + pattern_file_nodes)
         if len(files)==1:
-            print('%s\t%s' % (dirCV, excluded))
+            print('%s\t%s' % (dirLOO, excluded))
             file_out = files[0]
+            #
             df_nodes = read_scores(file_out, new_header=['GENE','C','D'])
             #
-            partition_out = int(dirCV.split('_')[1])
+            if(unique_experiment):
+                partition_out = df_excluded[1][0]
+            else:
+                partition_out = int(dirCV.split('_')[1])
             #
-            df_current = compute_intersection_correlation(dirCV, partition_out,
+            df_current = compute_intersection_correlation(dirLOO, partition_out,
                             df_cmp, df_nodes, key, TOP, col_rank,
                             columns_order, print_table=print_table)
             #
@@ -105,6 +107,96 @@ def analyse_CV(CV, df_cmp, TOP, col_rank,
     return df_all_results
 
 #------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+
+######################################################
+def plot_df_boxplot(df_top, var, top, s_overlap, s_out,
+                    title, xlabel, ylabel):
+    OUT = df_top.index.unique()
+    dict_plot = {}
+    for out in OUT:
+        dict_plot[out] = df_top.ix[out][s_overlap].reset_index(drop=s_out)
+    #
+    df_plot = pd.DataFrame(dict_plot)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.axis([0.5, 4.5, 0.0, 1.0])
+    df_plot.boxplot(grid=False)
+    filename = 'fig_'+var+'_'+str(top)+'_'+str(out)+'.pdf'
+    plt.savefig(filename, format='pdf')
+    plt.close()
+
+
+
+def plot_CV_analyse(dfA, varA,
+                 keep_columns=['TOP','OUT','OVERLAP'],
+                 new_index=['TOP','OUT']):
+    s_out     = keep_columns[1]
+    s_overlap = keep_columns[2]
+    #
+    df_analyse = dfA[keep_columns].set_index(new_index)
+    TOP = df_analyse.index.levels[0]
+    #OUT = df_analyse.index.levels[1]
+    #
+    xlabel = u'(%) Sementes excluídas'
+    ylabel = u'(%) Interseção com original'
+    for top in TOP:
+        title = u'(%d primeiros, escore %s)' % (top, varA)
+        df_top = df_analyse.ix[top]
+        #
+        plot_df_boxplot(df_top, varA, top, s_overlap, s_out, title, xlabel, ylabel)
+
+
+######################################################
+
+
+def plot_df(df_top, var, top, s_overlap, s_out,
+                    title, xlabel, ylabel):
+    OUT = df_top.index.unique()
+    array_plot = []
+    min_value = 1
+    for out in OUT:
+        aux = df_top.ix[out][s_overlap]
+        array_plot.append(aux)
+        if(aux < min_value):
+            min_value = aux
+    #
+    if(min_value < 0.55):
+        min_value = 0
+    else:
+        min_value = 0.5
+    df_plot = pd.DataFrame(array_plot,OUT)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    df_plot.plot.bar(legend=False)
+    plt.axis([-1, len(OUT), min_value, 1.0])
+    filename = 'fig_LOO_'+var+'_'+str(top)+'.pdf'
+    plt.savefig(filename, format='pdf')
+    plt.close()
+
+
+def plot_LOO_analyse(dfA, varA,
+                 keep_columns=['TOP','OUT','OVERLAP'],
+                 new_index=['TOP','OUT']):
+    s_out     = keep_columns[1]
+    s_overlap = keep_columns[2]
+    #
+    df_analyse = dfA[keep_columns].set_index(new_index)
+    TOP = df_analyse.index.levels[0]
+    #OUT = df_analyse.index.levels[1]
+    #
+    xlabel = u'Sementes excluídas'
+    ylabel = u'(%) Interseção com original'
+    for top in TOP:
+        title = u'(%d primeiros, escore %s)' % (top, varA)
+        df_top = df_analyse.ix[top]
+        #
+        plot_df(df_top, varA, top, s_overlap, s_out, title, xlabel, ylabel)
+
+######################################################
 
 
 pd.set_option('display.height', 50) # height has been deprecated.
@@ -149,7 +241,8 @@ print set(CV['in']) == set(CV['out'])
 print set(LOO['in']) == set(LOO['out'])
 #------------------------------------------------------------------------------
 
-pattern_file_nodes = '/out_CV_*-3_extracted_features-NODES.txt'
+pattern_CV_file_nodes = '/out_CV_*-3_extracted_features-NODES.txt'
+pattern_LOO_file_nodes = '/out_LOO_*-3_extracted_features-NODES.txt'
 #TOP = [10,20,30,40,50,75,100,150,200,300,400,500]
 TOP = [10,20,30,40,50,100,200]
 key='GENE'
@@ -172,63 +265,25 @@ columns_order = [
                 'SPEARMAN_OVERLAP',
                 'SPEARMAN_JACCARD']
 
-dfX = analyse_CV(CV, df_cmp, TOP, 'X',
-               columns_order, key, print_table=True)
+#dfX = analyse_CV(CV, df_cmp, TOP, 'X', pattern_CV_file_nodes,
+#               columns_order, key, print_table=True,unique_experiment=False)
 
-dfS = analyse_CV(CV, df_cmp, TOP, 'S',
-               columns_order, key, print_table=True)
+#dfS = analyse_CV(CV, df_cmp, TOP, 'S', pattern_CV_file_nodes,
+#               columns_order, key, print_table=True,unique_experiment=False)
 
-dfLooX = analyse_CV(LOO, df_cmp, TOP, 'X',
-               columns_order, key, print_table=True)
+dfLooX = analyse(LOO, df_cmp, TOP, 'X', pattern_LOO_file_nodes,
+               columns_order, key, print_table=False)
 
+dfLooS = analyse(LOO, df_cmp, TOP, 'S', pattern_LOO_file_nodes,
+               columns_order, key, print_table=False)
 
 print("######################################################################")
-print(dfLooX)
 
-plot_analyse(dfX, 'X')
-plot_analyse(dfS, 'S')
+#plot_CV_analyse(dfX, 'X')
+#plot_CV_analyse(dfS, 'S')
 
-######################################################
-def plot_df_boxplot(df_top, var, top, s_overlap, s_out,
-                    title, xlabel, ylabel):
-    OUT = df_top.index.unique()
-    dict_plot = {}
-    for out in OUT:
-        dict_plot[out] = df_top.ix[out][s_overlap].reset_index(drop=s_out)
-    #
-    df_plot = pd.DataFrame(dict_plot)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.axis([0.5, 4.5, 0.0, 1.0])
-    df_plot.boxplot(grid=False)
-    filename = 'fig_'+var+'_'+str(top)+'_'+str(out)+'.pdf'
-    plt.savefig(filename, format='pdf')
-    plt.close()
-
-
-
-def plot_analyse(dfA, varA,
-                 keep_columns=['TOP','OUT','OVERLAP'],
-                 new_index=['TOP','OUT']):
-    s_out     = keep_columns[1]
-    s_overlap = keep_columns[2]
-    #
-    df_analyse = dfA[keep_columns].set_index(new_index)
-    TOP = df_analyse.index.levels[0]
-    #OUT = df_analyse.index.levels[1]
-    #
-    xlabel = u'(%) Sementes excluídas'
-    ylabel = u'(%) Interseção com original'
-    for top in TOP:
-        title = u'(%d primeiros, escore %s)' % (top, varA)
-        df_top = df_analyse.ix[top]
-        #
-        plot_df_boxplot(df_top, varA, top, s_overlap, s_out, title, xlabel, ylabel)
-
-
-######################################################
-
+plot_LOO_analyse(dfLooX, 'X')
+plot_LOO_analyse(dfLooS, 'S')
 
 
 #------------------------------------------------------------------------------
@@ -240,7 +295,7 @@ def plot_analyse(dfA, varA,
 #------------------------------------------------------------------------------
 # Centrality Measures
 #------------------------------------------------------------------------------
-dfCM = pd.read_table('GS_Centrality_Measures.txt')
+#dfCM = pd.read_table('GS_Centrality_Measures.txt')
 
 #------------------------------------------------------------------------------
 
