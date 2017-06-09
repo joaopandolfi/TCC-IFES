@@ -1,0 +1,41 @@
+\begin{table}[]
+\centering
+\caption{Tabela com os genes sementes do experimento original que integraram com \textbf{\textsl{GWAS}}}
+\label{table_integrated_original_seeds}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{\textsl{Code 1}} & \textbf{GENE} &   \textbf{Description} & \textbf{Code 2} \\ \midrule
+4524 & \textbf{MTHFR} & 5,10-methylenetetrahydrofolate reductase (NADPH) & 1p36.3 \\
+5999 & \textbf{RGS4} & regulator of G-protein signaling 4 & 1q23.3 \\
+5362 & \textbf{PLXNA2} & plexin A2 & 1q32.2 \\
+27185 & \textbf{DISC1} & disrupted in schizophrenia 1 & 1q42.1 \\
+7166 & \textbf{TPH1} & tryptophan hydroxylase 1 & 11p15.3-p14 \\
+1815 & \textbf{DRD4} & dopamine receptor D4 & 11p15.5 \\
+2900 & \textbf{GRIK4} & glutamate receptor, ionotropic, kainate 4 & 11q22.3 \\
+1813 & \textbf{DRD2} & dopamine receptor D2 & 11q23 \\
+9638 & \textbf{FEZ1} & fasciculation and elongation protein zeta 1 (zygin I) & 11q24.2 \\
+4978 & \textbf{OPCML} & opioid binding protein/cell adhesion molecule-like & 11q25 \\
+2904 & \textbf{GRIN2B} & glutamate receptor, ionotropic, N-methyl D-aspartate 2B & 12p12 \\
+1610 & \textbf{DAO} & D-amino-acid oxidase & 12q24 \\
+3356 & \textbf{HTR2A} & 5-hydroxytryptamine (serotonin) receptor 2A & 13q14-q21 \\
+207 & \textbf{AKT1} & v-akt murine thymoma viral oncogene homolog 1 & 14q32.32|14q32.32 \\
+23322 & \textbf{RPGRIP1L} & RPGRIP1-like & 16q12.2 \\
+3240 & \textbf{HP} & haptoglobin & 16q22.1 \\
+7157 & \textbf{TP53} & tumor protein p53 & 17p13.1 \\
+6532 & \textbf{SLC6A4} & solute carrier family 6 (neurotransmitter transporter, serotonin), member 4 & 17q11.1-q12 \\
+348 & \textbf{APOE} & apolipoprotein E & 19q13.2 \\
+3553 & \textbf{IL1B} & interleukin 1, beta & 2q14 \\
+2571 & \textbf{GAD1} & glutamate decarboxylase 1 (brain, 67kDa) & 2q31 \\
+91752 & \textbf{ZNF804A} & zinc finger protein 804A & 2q32.1 \\
+2066 & \textbf{ERBB4} & v-erb-a erythroblastic leukemia viral oncogene homolog 4 (avian) & 2q33.3-q34 \\
+1312 & \textbf{COMT} & catechol-O-methyltransferase & 22q11.21-q11.23|22q11.21 \\
+2561 & \textbf{GABRB2} & gamma-aminobutyric acid (GABA) A receptor, beta 2 & 5q34 \\
+1812 & \textbf{DRD1} & dopamine receptor D1 & 5q35.1 \\
+2913 & \textbf{GRM3} & glutamate receptor, metabotropic 3 & 7q21.1-q21.2 \\
+5649 & \textbf{RELN} & reelin & 7q22 \\
+3084 & \textbf{NRG1} & neuregulin 1 & 8p12 \\
+5533 & \textbf{PPP3CC} & protein phosphatase 3 (formerly 2B), catalytic subunit, gamma isoform & 8p21.3 \\ \bottomrule
+\end{tabular}
+
+\flushleft{Fonte: Tabela gerada pelo autor.}
+\end{table}
