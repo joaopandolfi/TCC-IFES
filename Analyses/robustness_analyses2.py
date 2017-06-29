@@ -122,6 +122,7 @@ def plot_df_boxplot(df_top, var, top, s_overlap, s_out,
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
+    #plt.figure(figsize=(20,10)) #TESTAR
     plt.axis([0.5, 4.5, 0.0, 1.0])
     df_plot.boxplot(grid=False)
     filename = 'fig_'+var+'_'+str(top)+'_'+str(out)+'.pdf'
