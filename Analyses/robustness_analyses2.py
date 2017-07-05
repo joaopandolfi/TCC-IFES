@@ -74,9 +74,9 @@ def compute_intersection_correlation(dirCV, partition_out,
 def analyse(Experiments, df_cmp, TOP, col_rank, pattern_file_nodes,
                     columns_order, key='GENE', print_table=False,unique_experiment=True):
     df_all_results = create_result_dataframe(0, [], columns_order)
-    for dirLOO in LOO['in']:
-        path_in  = dir_in  + dirLOO
-        path_out = dir_out + dirLOO
+    for dirExperiment in Experiments['in']:
+        path_in  = dir_in  + dirExperiment
+        path_out = dir_out + dirExperiment
         #
         #df_used     = pd.read_table(path_in + suffix_seeds, header=None)
         df_excluded = pd.read_table(path_in + suffix_exclude, header=None)
@@ -86,7 +86,7 @@ def analyse(Experiments, df_cmp, TOP, col_rank, pattern_file_nodes,
         #
         files = glob.glob(path_out + pattern_file_nodes)
         if len(files)==1:
-            print('%s\t%s' % (dirLOO, excluded))
+            print('%s\t%s' % (dirExperiment, excluded))
             file_out = files[0]
             #
             df_nodes = read_scores(file_out, new_header=['GENE','C','D'])
@@ -94,9 +94,9 @@ def analyse(Experiments, df_cmp, TOP, col_rank, pattern_file_nodes,
             if(unique_experiment):
                 partition_out = df_excluded[1][0]
             else:
-                partition_out = int(dirCV.split('_')[1])
+                partition_out = int(dirExperiment.split('_')[1])
             #
-            df_current = compute_intersection_correlation(dirLOO, partition_out,
+            df_current = compute_intersection_correlation(dirExperiment, partition_out,
                             df_cmp, df_nodes, key, TOP, col_rank,
                             columns_order, print_table=print_table)
             #
@@ -116,22 +116,22 @@ def plot_df_boxplot(df_top, var, top, s_overlap, s_out,
     OUT = df_top.index.unique()
     dict_plot = {}
     for out in OUT:
-        dict_plot[out] = df_top.ix[out][s_overlap].reset_index(drop=s_out)
+        dict_plot[out] = df_top.ix[out][s_overlap].reset_index(drop=s_out)*100
     #
     df_plot = pd.DataFrame(dict_plot)
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    #plt.figure(figsize=(20,10)) #TESTAR
-    plt.axis([0.5, 4.5, 0.0, 1.0])
+    plt.axis([0.5, 4.5, 0.0, 100.0])
+    plt.figure(figsize=(10,5)) 
     df_plot.boxplot(grid=False)
-    filename = 'fig_'+var+'_'+str(top)+'_'+str(out)+'.pdf'
+    filename = 'fig_'+var+'_'+str(top)+'_'+str(int(out))+'.pdf'
     plt.savefig(filename, format='pdf')
     plt.close()
  
  
  
-def plot_CV_analyse(dfA, varA,
+def plot_CV_analyse(dfA, varA, srtA,
                  keep_columns=['TOP','OUT','OVERLAP'],
                  new_index=['TOP','OUT']):
     s_out     = keep_columns[1]
@@ -144,7 +144,7 @@ def plot_CV_analyse(dfA, varA,
     xlabel = u'(%) Sementes excluídas'
     ylabel = u'(%) Interseção com original'
     for top in TOP:
-        title = u'(%d primeiros, escore %s)' % (top, varA)
+        title = u'(%d primeiros, escore %s)' % (top, srtA)
         df_top = df_analyse.ix[top]
         #
         plot_df_boxplot(df_top, varA, top, s_overlap, s_out, title, xlabel, ylabel)
@@ -160,11 +160,11 @@ def plot_df(df_top, var, sorted_genes, top, s_overlap, s_out,
     array_plot = []
     min_value = 1
     for out in OUT:
-        aux = 1.0 - df_top.ix[out][s_overlap]
+        aux = (1.0 - df_top.ix[out][s_overlap])*100
         array_plot.append(aux)
     df_plot = pd.DataFrame(array_plot,OUT)
-    df_plot.plot.bar(legend=False)
-    plt.axis([-1, len(OUT), 0.0, 0.5])
+    df_plot.plot.bar(legend=False,figsize=(10,5))
+    plt.axis([-1, len(OUT), 0.0, 50.0])
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
@@ -260,11 +260,11 @@ columns_order = [
                 'SPEARMAN_OVERLAP',
                 'SPEARMAN_JACCARD']
  
-#dfX = analyse_CV(CV, df_cmp, TOP, 'X', pattern_CV_file_nodes,
-#               columns_order, key, print_table=True,unique_experiment=False)
+dfX = analyse(CV, df_cmp, TOP, 'X', pattern_CV_file_nodes,
+               columns_order, key, print_table=False,unique_experiment=False)
  
-#dfS = analyse_CV(CV, df_cmp, TOP, 'S', pattern_CV_file_nodes,
-#               columns_order, key, print_table=True,unique_experiment=False)
+dfS = analyse(CV, df_cmp, TOP, 'S', pattern_CV_file_nodes,
+               columns_order, key, print_table=False,unique_experiment=False)
  
 dfLooX = analyse(LOO, df_cmp, TOP, 'X', pattern_LOO_file_nodes,
                columns_order, key, print_table=False)
@@ -274,8 +274,8 @@ dfLooS = analyse(LOO, df_cmp, TOP, 'S', pattern_LOO_file_nodes,
  
 print("######################################################################")
  
-#plot_CV_analyse(dfX, 'X')
-#plot_CV_analyse(dfS, 'S')
+plot_CV_analyse(dfX, 'X', '$X$')
+plot_CV_analyse(dfS, 'S', "$\Delta'$")
  
  
  
