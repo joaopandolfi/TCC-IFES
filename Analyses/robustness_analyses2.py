@@ -119,11 +119,11 @@ def plot_df_boxplot(df_top, var, top, s_overlap, s_out,
         dict_plot[out] = df_top.ix[out][s_overlap].reset_index(drop=s_out)*100
     #
     df_plot = pd.DataFrame(dict_plot)
+    plt.figure(figsize=(10,5))
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.axis([0.5, 4.5, 0.0, 100.0])
-    plt.figure(figsize=(10,5)) 
     df_plot.boxplot(grid=False)
     filename = 'fig_'+var+'_'+str(top)+'_'+str(int(out))+'.pdf'
     plt.savefig(filename, format='pdf')
@@ -163,7 +163,7 @@ def plot_df(df_top, var, sorted_genes, top, s_overlap, s_out,
         aux = (1.0 - df_top.ix[out][s_overlap])*100
         array_plot.append(aux)
     df_plot = pd.DataFrame(array_plot,OUT)
-    df_plot.plot.bar(legend=False,figsize=(10,5))
+    df_plot.plot.bar(legend=False,figsize=(10,4))
     plt.axis([-1, len(OUT), 0.0, 50.0])
     plt.title(title)
     plt.xlabel(xlabel)
