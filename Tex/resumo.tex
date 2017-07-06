@@ -1,6 +1,34 @@
 \begin{resumo}
 
-Um dos grandes problemas enfrentados pelos pesquisadores é o estudo das doenças complexas, pois elas são poligênicas e multifatoriais, fazendo com que diferentes estudos apresentem baixa replicabilidade. Esse problema em sido abordado por métodos que realizam integração de dados entre expressão gênica e dados de rede PPI (\textit{Protein Protein Interaction Network}). Dentre eles destaca-se o método NERI que obteve bons resultados de replicabilidade. O método NERI baseia-se nas hipóteses da \textit{Network Medicine} combinadas com métodos de importância relativa e obteve bons resultados de replicabilidade. A importância relativa é uma forma de inferir a importância dos nós da rede a partir de um conjunto de nós conhecidos como sementes. Entretanto, este método carece de uma análise de robustez que avalie o quanto seus resultados são dependentes dos genes sementes. Neste trabalho, analisamos a robustez do método NERI com relação aos genes sementes visando avaliar o impacto da remoção destes durante a análise. Utilizamos as técnicas de \textit{leave-one-out} e validação cruzada na qual removemos alguns nós sementes e comparamos cada resultado com o resultado original. Com isso, avaliamos a similaridade das listas de transcritos utilizando o método estatístico da correlação de postos de Spearman. Observamos que a correlação variou de 0,75 até 0,99 para o leave-one-out e de…. para a validação cruzada com 5 grupos de 6 genes cada. Portanto, o método é considerado robusto (ou não) e recomendamos que …
+Um dos grandes problemas enfrentados pelos pesquisadores é o estudo das doenças complexas, pois elas são poligênicas e multifatoriais, fazendo com que diferentes estudos apresentem baixa replicabilidade.
+Recentemente, avanços significativos tem sido obtidos por métodos que realizam integração de dados entre expressão gênica e dados de rede PPI (\textit{Protein Protein Interaction Network}).
+Dentre eles destaca-se o método NERI que obteve bons resultados de replicabilidade.
+Esse método baseia-se nas hipóteses da \textit{Network Medicine} combinadas com métodos de importância relativa em redes complexas.
+A importância relativa é uma forma de inferir a relevância topológica dos nós da rede baseado em um conjunto de nós conhecidos como sementes. Entretanto, esse método carece de uma análise de robustez, que avalie o quanto seus resultados são dependentes dos genes sementes.
+Neste trabalho, analisamos a robustez do método NERI com relação aos genes sementes visando avaliar o impacto da remoção progressiva destes.
+Realizamos experimentos mantendo fixos a rede PPI e os dados de expressão, 
+mas removendo progressivamente parte dos nós sementes do conjunto original (de forma similar as técnicas de avaliação de classificadores \textit{leave-one-out} e validação cruzada), e comparando a interseção entre seus resultados com o resultado original.
+%
+Variamos o percentual de genes sementes excluídos entre 10 e 40\% e, em seguida, comparamos os primeiros elementos das listas resultantes com os primeiros da lista original.
+%
+Considerando o melhor cenário (remoção de 10\% das sementes), as listas resultantes apresentaram em média 90\% de interseção com a lista original, e mesmo no pior cenário (remoção de 40\% das sementes), a interseção foi de 60\% em média.
+Além disso, observamos também que quanto maior a lista dos primeiros genes comparados, menor é a variância das interseções das listas resultantes com a lista original.
+%
+Portanto, o método NERI pode ser considerado robusto com relação aos genes sementes, indica replicabilidade mesmo em situações onde os genes sementes são variados.
+
 
 Palavras chaves: Network Medicine, Validação Cruzada, Leave-one-out, Robustez.
 \end{resumo}
+
+An importante problem faced by researchers is the study of complex diseases, because they are polygenic and multifactorial, implying small replicability among different studies.
+Recently, significant advances have been reached by methods that perform data integration between gene expression and PPI (Protein-Protein Interaction Network) data.
+Among them, we highlight the NERI method which achieved good replicability results.
+This method is based on Network Medicine hypotheses combined with relative importance analyses in complex networks.
+Relative importance assesses the topological relevance of network nodes based on a set of important nodes known as seeds.
+However, until this date no robustness analysis was conducted for the NERI method, in order to evaluate how much its results are dependent on the seed genes.
+In this work, we analyzed the robustness of the NERI method with regard to the seed genes in order to evaluate the impact of their progressive removal.
+We performed experiments fixing the PPI network and expression data, but progressively removing parts of the seed nodes from the original set (analogous to the classification assessment techniques, such as cross-validation), and comparing the intersection between their results and the original result.
+We excluded between 10%--40% of the seed genes and compared the top elements of the resulting lists with the top ones from the original list.
+Considering the best scenario (removal of 10% of seeds), the resulting lists averaged 90% of intersection with the original list, and even in the worst case scenario (removal of 40% of seeds), the intersection was 60% in average.
+In addition, we also note that the larger the list of the first genes compared, the smaller is the variance of the intersections of the resulting lists with the original list.
+Therefore, the NERI method can be considered robust with respect to the exclusion of seed genes, also presenting good replicability in such a case.

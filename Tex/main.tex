@@ -465,17 +465,74 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 % do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
 % imagem da página assinada pela banca com o comando abaixo:
 %
- \includepdf{aprovacao.pdf}
+% \includepdf{aprovacao.pdf}
 %
+%%% ====================================================================
+%%% Exemplo de construção da folha de aprovação. Depois da
+%%% apresentação do trabalho, quando a folha de apresentação real
+%%% tiver sido assinada pela banca, a folha real deve ser digitalizada
 
-\includepdf{declaracao.pdf}
+%%% e o ambiente abaixo deve ser substituído por:
+%%% \includepdf{folhadeaprovacao_final.pdf}
+\begin{folhadeaprovacao}
+  \begin{center}
+    {\ABNTEXchapterfont\MakeTextUppercase{\imprimirautor}}\\
+    \begin{center}
+      \ABNTEXchapterfont\MakeTextUppercase{\imprimirtitulo}\\
+    \end{center}
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+      {\footnotesize{\imprimirpreambulo}}\\
+    \end{minipage}%
+  \end{center}
+  \vspace{-1cm}%
+  \begin{center}
+    Aprovado em 26 de Julho de 2017.\\[15mm]
+    \textbf{COMISSÃO EXAMINADORA}\\[5mm]
+    \assinatura{\imprimirorientador \\
+      Instituto Federal do Espírito Santo \\
+      Orientadora}\vspace{-1cm}
+    \assinatura{\imprimircoorientador \\
+      Instituto Federal do Espírito Santo \\
+      Coorientador}\vspace{-1cm}
+    \assinatura{Membro Convidado da Banca 1 \\
+      Instituição Externa 1}\vspace{-1cm}
+    \assinatura{Membro Convidado da Banca 2 \\
+      Instituição Externa 2}
+  \end{center}
+\end{folhadeaprovacao}
+
+%%% --------------------------------------------------------------------
+%%% Ambiente para escrita da declaração do autor
+\begin{declaracaodoautor}
+
+  \vspace*{1.5cm}
+
+  Declaro, para fins de pesquisa acadêmica, didática e
+  técnico-científica, que este Trabalho de Conclusão de Curso pode ser
+  parcialmente utilizado, desde que se faça referência à fonte e ao
+  autor.
+
+  \vspace*{2.5cm}
+
+  \centering
+
+  \imprimirlocal, 29 de Julho de 2017.
+
+  \vspace*{2.5cm}
+
+  \imprimirautor
+
+  \vspace*{\fill}
+  
+\end{declaracaodoautor}
+%------------------------------------------------------------
+
+%\includepdf{declaracao.pdf}
 
 \begin{comment}
 \cleardoublepage
 \begin{folhadeaprovacao}
-
-
-
 
 \begin{center}
 
@@ -497,7 +554,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
     
  \begin{center}
   
-  Aprovado em 05 de Julho de 2016 \\
+  Aprovado em 26 de Julho de 2017 \\
   \end{center}  
    
    \begin{center}
@@ -559,8 +616,8 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \vspace*{\fill}
    \centering
    \noindent
-   \textit{ Aos meus pais }  \\
-   \textit{ Aos xxx } \vspace*{\fill}
+   \textit{ Aos XXX }  \\
+   \textit{ Aos YYY } \vspace*{\fill}
 \end{dedicatoria}
 % ---
 
@@ -584,7 +641,7 @@ Agradecimentos
 \begin{epigrafe}
     \vspace*{\fill}
 	\begin{flushright}
-		\textit{Texto motivador} \\ \\ Winston Churchill
+		\textit{Texto motivador} \\ \\ Alguém que escreveu
 	\end{flushright}
 \end{epigrafe}
 
