@@ -1,33 +1,41 @@
 \chapter{Conclusão}
-\textcolor{red}{=== Texto ===}
 
-Neste trabalho concluímos que o método NERI é robusto, pelo fato de apresentar baixas variações no resultado final com a remoção de genes sementes.
+Neste trabalho apresentamos a análise de robustez do método NERI, que integra dados biológicos de expressão gênica com dados de redes PPI para priorização de genes relacionados a doenças complexas.
+Para explorar a rede PPI, o método parte de alguns nós sementes da rede -- conhecidos por estarem associadas à doença -- e utiliza princípios de importância relativa para explorar a vizinhança das sementes. 
+Para explorar a rede PPI o método baseia-se nas hipóteses da \textsl{Network Medicine} combinadas com coexpressão e com isto realiza a priorização gênica através de duas pontuações (escores $X$ e $\Delta'$).
+O método NERI obteve bons resultados de replicabilidade em 3 estudos diferentes, mas faltava analisar o quão robusto o método seria caso uma ou algumas sementes fossem removidas.
 
-\textcolor{red}{DESENVOLVER}
+Para realizar a análise de robustez, alteramos parcialmente o conjunto de 30 genes sementes mas mantivemos os demais dados (ex: expressão KATO inalterados), e em seguida aplicamos o método e comparamos as listas resultantes com as listas originais.
+As alterações realizadas no conjunto de gene sementes foram basicamente duas: remoção de um único gene e remoção de vários genes (3, 6, 9 e 12, ou em termos percentuais 10\%, 20\%, 30\%, 40\%) do conjunto de sementes original. 
 
+
+Em nossos resultados, observamos que a remoção de um único gene semente apresentou maior impacto no score $\Delta'$, ao passo que no escore $X$ apresentou pouco impacto.
+Também observamos que os impactos causados em ambos os escores não estão relacionados diretamente ao grau do gene semente removido.
+Este é um comportamento importante de citar, pois, a intuição inicial era de que genes com maior grau impactavam mais o resultado em sua remoção. De fato genes com maior grau impactaram no resultado final, mas genes com grau \textsl{1} causaram impacto igual ou muito próximo tornando então inconclusiva a hipótese pré afixada. Desta forma, descobrimos que o grau do gene semente removido não está diretamente relacionado ao impacto causado.
+
+
+Em relação à remocão de vários genes, considerando o melhor cenário (remoção de \textsl{10\%} das sementes), as listas resultantes do escore $X$ apresentaram em média \textsl{90\%} de interseção com a lista original, e mesmo no pior cenário (remoção de \textsl{40\%} das sementes), a interseção foi de \textsl{60\%} em média, em relação ao score $X$. 
+Além disso, observamos  que quanto maior a lista dos primeiros genes comparados, menor é a variância das interseções das listas resultantes com a lista original. Também notamos que os genes sementes com alto grau na rede não influenciam diretamente o resultado final em sua remoção.
+
+Conforme apresentado na Seção~\ref{sec:compXS}, o escore $\Delta'$ sofreu maior impacto que o escore $X$.
+Por exemplo, para a comparação dos 10 primeiros genes com remoção de 10\% das sementes, o escore $\Delta'$ atingiu uma interseção mínima de 50\% e mediana de 80\%, ao passo que o score $X$ atingiu mínima de 60\% e mediano de 90\%.
+%
+Estes valores aumentam ao analisar os resultados com 40\% de remoção dos genes sementes, onde o score $X$ apresenta interseção mínima de 40\% e mediana de 60\%, enquanto o score $\Delta'$ sofreu mais impacto atingindo a interseção mínima de 10\% e mediana de 55\%.
 
 \section{Trabalhos Futuros}
 
+Como trabalhos futuros, indicamos a realização das seguintes tarefas:
 
 \begin{enumerate}
-\item Concluir interface gráfica
-    %\item Polir usabilidade
-    
-    %Polir alguns aspectos de usabilidade como botões de ajuda e dados pré 
-    %configurados.
-    
-    %\item Polir integração com diferentes SO
-    
-    %Polir alguns elementos de interface que se apresentam modificados em diferentes sistemas operacionais, devido a biblioteca utilizada valer-se de elementos nativos de cada sistema operacional.
-    
-    %\item Polir cores e apresentação
-    %Melhorar pequenas harmonias de cores e fontes apresentadas na interface, %assim como tamanho de botões e caixas de texto.
 
-\item Integração de dados
-    %\item Integrar com XXXX
-    
-\item Disponibilização do código fonte na web
+\item Analisar a robustez -- em relação as sementes -- de outros métodos, tais como: \textsl{Random Walk with Restart} e comparar com os resultados obtidos neste trabalho.
 
-\item Criação de um serviço web para utilização do método NERI
+\item Pesquisar como integrar novas fontes de dados ao sistema, tais como: dados de epigenética, dados clínicos, etc.
+    
+\item Concluir interface gráfica adicionando documentação com tutorial de utilização.
+
+\item Disponibilização do código fonte na web, e possivelmente uma publicação em um \textsl{Application Notes}.
+
+\item Criar um serviço web para utilização do método NERI.
 
 \end{enumerate}

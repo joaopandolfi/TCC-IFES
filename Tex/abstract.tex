@@ -2,7 +2,20 @@
 
 \begin{resumo}
     
-Traduzir o resumo
+An importante problem faced by researchers is the study of complex diseases, because they are polygenic and multifactorial, implying small replicability among different studies.
+Recently, significant advances have been reached by methods that perform data integration between gene expression and PPI (Protein-Protein Interaction Network) data.
+Among them, we highlight the NERI method which achieved good replicability results.
+This method is based on Network Medicine hypotheses combined with relative importance analyses in complex networks.
+Relative importance assesses the topological relevance of network nodes based on a set of important nodes known as seeds.
+However, until this date no robustness analysis was conducted for the NERI method, in order to evaluate how much its results are dependent on the seed genes.
+In this work, we analyzed the robustness of the NERI method with regard to the seed genes in order to evaluate the impact of their progressive removal.
+We performed experiments fixing the PPI network and expression data, but progressively removing parts of the seed nodes from the original set (analogous to the classification assessment techniques, such as cross-validation), and comparing the intersection between their results and the original result.
+We excluded between 10\%--40\% of the seed genes and compared the top elements of the resulting lists with the top ones from the original list.
+Considering the best scenario (removal of 10\% of seeds), the resulting lists averaged 90\% of intersection with the original list, and even in the worst case scenario (removal of 40\% of seeds), the intersection was 60\% in average.
+In addition, we also note that the larger the list of the first genes compared, the smaller is the variance of the intersections of the resulting lists with the original list.
+Therefore, the NERI method can be considered robust with respect to the exclusion of seed genes, also presenting good replicability in such a case.
+
+Keywords: Network Medicine; PPI Network; Relative Importance; NERI Method; Seed Robustness.
 \end{resumo}
 
 

@@ -19,41 +19,39 @@
 
 
 %
-Para análise de robustez do \textsl{\textbf{Método NERI}} foram utilizados conceitos de validação baseados na alteração dos genes sementes. Para que seja feita a análise foram utilizados os resultados de priorização gênica gerada pela ferramenta. De forma a ser possível verificar e mapear os impactos causados devido a remoção ou falta de genes sementes no experimento. 
+Para análise de robustez do Método NERI foram utilizados conceitos de validação baseados na alteração dos genes sementes. Para que seja feita a análise foram utilizados os resultados de priorização gênica gerada pela ferramenta. De forma a ser possível verificar e mapear os impactos causados devido a remoção ou falta de genes sementes no experimento. 
 
 \section{Materiais}
 
 %
-Este trabalho utilizou a base de dados \textsl{\textbf{KATO}} que consiste em expressões gênicas de pessoas portadoras da doença \textsl{Esquizofrenia}. Estes dados podem ser encontrados \textcolor{red}{<AQUI>}. Esta base de dados em específico, foi selecionada devido ao fato de ter sido utilizada na tese de doutorado no qual este trabalho se baseia e se referencia. Assim sendo, os dados obtidos podem ser comparados com os encontrados e apresentados pelo autor, evitando o enviesamento do resultado por diferença de experimentação.
+Este trabalho utilizou a base de dados \textsl{\textbf{KATO}} que consiste em expressões gênicas de pessoas portadoras da doença \textsl{Esquizofrenia}.
+Estes dados podem ser encontrados no \textsl{Stanley Neuropathology Consortium Integrative Database (SNCID)}\footnote{SNCID: (http://sncid.stanleyresearch.org)}.
+Esta base de dados em específico, foi selecionada devido ao fato de ter sido utilizada na tese de doutorado \ref{Simoes2015} no qual este trabalho se baseia e se referencia.
+Assim sendo, os dados obtidos podem ser comparados com os encontrados e apresentados pelo autor, evitando o enviesamento do resultado por diferença de experimentação.
 
 %
-O \textsl{\textbf{Método NERI}} também recebe dados de rede de integração proteína proteína \textsl{(Protein Protein Interaction – PPI)}, onde os mesmos também foram mantidos os originais utilizados pelo autor, sendo formada pelas pelas bases de dados \textsl{\textbf{HPRD}}\footnote{HPRD: (http://www.hprd.org/)} (\textsl{Human Protein Reference Database}), \textsl{\textbf{MINT}}\footnote{MINT: (http://mint.bio.uniroma2.it/)} (\textsl{Molecular INTeraction database}) e \textsl{\textbf{IntAct}}\footnote{IntAct: (http://www.ebi.ac.uk/intact/)} (\textsl{IntAct molecular interaction database}).
+O Método NERI também recebe dados de rede de integração proteína proteína \textsl{(Protein Protein Interaction – PPI)}, onde os mesmos também foram mantidos os originais utilizados pelo autor, sendo formada pelas pelas bases de dados \textsl{\textbf{HPRD}}\footnote{HPRD: (http://www.hprd.org/)} (\textsl{Human Protein Reference Database}), \textsl{\textbf{MINT}}\footnote{MINT: (http://mint.bio.uniroma2.it/)} (\textsl{Molecular INTeraction database}) e \textsl{\textbf{IntAct}}\footnote{IntAct: (http://www.ebi.ac.uk/intact/)} (\textsl{IntAct molecular interaction database}).
 %
 Como entrada do sistema, também são definidos os \textsl{\textbf{Genes Sementes}}. Estes no qual, são os genes onde há certeza da sua relação com a doença analisada em questão, a base de dados original pode ser encontrada no apêndice~\ref{table_original_seeds}.
 
 \section{Estratégia utilizada para análise de robustez}
 
 %
-Neste trabalho, foi escolhida a variação dos \textsl{\textbf{Genes Sementes}} como parâmetro de validação do \textsl{\textbf{Método NERI}}. Onde o objetivo é identificar o impacto gerado na rede de integração gênica e no resultado final (\textsl{Lista de priorização gênica}). Desta forma, podendo calcular a dependência e sensibilidade do método em relação a qualidade e quantidade de genes sementes.
-
-
-
-\section{Escolha dos métodos de validação}
-
+Neste trabalho, foi escolhida a remoção de alguns genes sementes como parâmetro de análise de robustez do Método NERI. Onde o objetivo é identificar o impacto gerado na rede de integração gênica e no resultado final (lista de priorização gênica). Desta forma, podendo calcular a dependência e sensibilidade do método em relação a qualidade e quantidade de genes sementes.
 %
-Os métodos de validação adotados foram selecionados pelas suas caraterísticas de estudo do problema em questão, não podendo deixar margem para enviesamento dos resultados e serem capazes de explorar comportamentos diferentes no experimento. Os modelos de validação escolhidos foram baseados no \textit{Leave one Out} e \textit{Cross Validation}.
+Os métodos escolhidos para análise de robustez baseiam-se nos métodos de avaliação de classificadores \textit{Leave-one-out Cross-Validation} e \textit{Repeated K-Fold Cross-Validation}.
 
 
 \subsection{Remoção de um único gene semente}
 
-Foi utilizado um modelo baseado no método validação \textsl{Leave one out}, onde consiste na remoção de um gene semente por vez. Desta forma, formando um \textsl{\textbf{conjunto diferente}} para cada \textsl{\textbf{gene semente}} removido, garantindo que sempre haja a mesma quantidade de genes em cada conjunto e que todos \textsl{\textbf{genes sementes}} tenham ficado de fora pelo menos uma vez. Assim sendo, o número final de conjuntos formados será a quantidade total de genes sementes.
+Foi utilizado um modelo baseado no método validação \textsl{Leave-one-out Cross-Validation}, onde consiste na remoção de um gene semente por vez. Desta forma, formando um \textsl{\textbf{conjunto diferente}} para cada \textsl{\textbf{gene semente}} removido, garantindo que sempre haja a mesma quantidade de genes em cada conjunto e que todos \textsl{\textbf{genes sementes}} tenham ficado de fora pelo menos uma vez. Assim sendo, o número final de conjuntos formados será a quantidade total de genes sementes.
 
 %
-Com este método, é possível descobrir se a falta de um único gene semente é responsável por alterar significantemente a priorização gênica gerada pelo \textsl{\textbf{Método NERI}}. Desta forma, podendo analisar se o método em questão é sensível a retiradas de \textsl{\textbf{genes sementes}}. 
+Com este método, é possível descobrir se a falta de um único gene semente é responsável por alterar significantemente a priorização gênica gerada pelo Método NERI. Desta forma, podendo analisar se o método em questão é sensível a retiradas de \textsl{\textbf{genes sementes}}. 
 O método de \textsl{\textbf{remoção de um único gene}} também permite a análise de importância relativa dos \textsl{\textbf{genes sementes}}, onde aquele que causar maior impacto no resultado final indica uma importância relativa maior em relação aos outros. 
 
 %
-Também é possível observar se existe relação entre as medidas de centralidade do gene representado na rede (neste trabalho, utilizaremos somente o grau do nó), com o impacto causado. Este é um ponto importante a ser analisado, pelo fato de poder estimar a importância relativa de um gene semente, observando o seu grau na rede de integração. Esta é uma medida que poderá impactar no resultado da priorização gênica resultante do \textsl{\textbf{Método NERI}}, por isso a importância da análise.
+Também é possível observar se existe relação entre as medidas de centralidade do gene representado na rede (neste trabalho, utilizaremos somente o grau do nó), com o impacto causado. Este é um ponto importante a ser analisado, pelo fato de poder estimar a importância relativa de um gene semente, observando o seu grau na rede de integração. Esta é uma medida que poderá impactar no resultado da priorização gênica resultante do Método NERI, por isso a importância da análise.
 
 
 %Porém há outra análise importante que deve ser feita mas o Leave One Out não é capaz de prover, é se a quantidade de nós removidos influenciam diretamente no resultado. Para observar este aspecto, utilizamos o método Cross Validation, no qual, suas características se moldam mais a esta ótica de estudo.
@@ -61,31 +59,26 @@ Também é possível observar se existe relação entre as medidas de centralida
 
 \subsection{Remoção de vários genes sementes}
 
-Foi utilizado um modelo baseado no \textsl{Cross Validation}, que consiste na remoção de mais de um gene semente por experimento.
+Foi utilizado um modelo baseado no \textsl{Repeated K-Fold Cross-Validation}, que consiste na remoção de mais de um gene semente por experimento.
 %
-Este método foi adotado pela sua característica principal, organização de conjuntos de genes sementes com tamanhos variados. Com esta característica chave, buscou-se estudar o comportamento da rede quando há a remoção de mais de um gene semente do conjunto original.
-
-%
-Com a formação de agrupamentos de genes sementes aleatórios e de tamanhos variados, poderá observar o comportamento do método analisado em situações variadas. Também será possível buscar o ponto de ruptura de proximidade ao resultado original, e assim estimar um grau de dependência e sensibilidade a uma quantidade ou arranjo de genes sementes presentes no experimento.
-
-%
-O fato dos agrupamentos possuírem arranjos de genes diferentes, abre-se a possibilidade de estudo sobre a eficácia de um ou mais genes semente sobre o resultado final, ou seja, se um arranjo específico promove melhores resultados que os demais, sendo os conjuntos de mesmo tamanho.
+Este método foi adotado pela sua característica principal, organização de conjuntos de genes sementes com tamanhos variados.
+Com esta característica chave, buscou-se estudar o impacto dos resultados de priorização do método quando há a remoção de vários genes sementes do conjunto original.
 
 % 
-Também é possível a observação dos conjuntos no qual foram removidos genes que causaram alto impacto em sua remoção na etapa anterior. Estes conjuntos informarão se o impacto na remoção de um único gene é acumulativo, ou seja, se houver a remoção de mais de um gene semente com alto impacto em sua remoção, se o resultado do experimento em questão será proporcional ao estudo da análise anterior.
+Com isso, é possível a observação dos conjuntos no qual foram removidos genes que causaram alto impacto em sua remoção na etapa anterior. Estes conjuntos informarão se o impacto na remoção de um único gene é acumulativo, ou seja, se houver a remoção de mais de um gene semente com alto impacto em sua remoção, se o resultado do experimento em questão será proporcional ao estudo da análise anterior.
 
 \section{Definição dos genes sementes utilizados}
 
 %
-Em seu trabalho, os autores \cite{SIMOES2015} utilizaram um conjunto de 38 genes sementes obtidos de um estudo de associação de esquizofrenia, apresentados na Tabela~\ref{table_original_seeds} presente no Apêndice \ref{appendice_tables}.
+Em seu trabalho, os autores \cite{Simoes2015} utilizaram um conjunto de 38 genes sementes obtidos de um estudo de associação de esquizofrenia, apresentados na Tabela~\ref{table_original_seeds} presente no Apêndice \ref{appendice_tables}.
 %
 %A Tabela~\ref{table_original_seeds} apresentada no capítulo 4 apresenta estes \textsl{\textbf{38}} genes.
 %
-No entanto, como o \textsl{\textbf{Método NERI}} utiliza a rede \textsl{PPI}, durante a integração dos genes sementes, somente \textsl{\textbf{30}} genes foram integrados a rede. Estes nos quais foram utilizados neste trabalho, em vista que os genes sementes que não integraram não afetam o resultado final, ficando de fora dos conjuntos de genes sementes gerados para validação.
+No entanto, como o Método NERI utiliza a rede \textsl{PPI}, durante a integração dos genes sementes, somente \textsl{\textbf{30}} genes foram integrados a rede. Estes nos quais foram utilizados neste trabalho, em vista que os genes sementes que não integraram não afetam o resultado final, ficando de fora dos conjuntos de genes sementes gerados para validação.
 
 \subsection{Aplicação do método similar ao  \textsl{Leave-one-out Cross-Validation}}
 
-Para a validação utilizando o Método similar ao \textsl{Leave-one-out Cross-Validation}, em que neste trabalho chamaremos de \textsl{\textbf{Método de remoção de apenas um gene}}, a preparação do experimento consistiu em gerar conjuntos de genes sementes para o \textsl{\textbf{Método NERI}} de forma que cada conjunto tenha um gene a menos em relação ao experimento original. Foi criado para cada gene semente, um conjunto sem o mesmo, onde exista um conjunto para cada gene removido, ou seja, em uma amostra de \textsl{\textbf{30}} genes sementes, temos \textsl{\textbf{30}} experimentos possíveis.
+Para a validação utilizando o Método similar ao \textsl{Leave-one-out Cross-Validation}, em que neste trabalho chamaremos de \textsl{\textbf{Método de remoção de apenas um gene}}, a preparação do experimento consistiu em gerar conjuntos de genes sementes para o Método NERI de forma que cada conjunto tenha um gene a menos em relação ao experimento original. Foi criado para cada gene semente, um conjunto sem o mesmo, onde exista um conjunto para cada gene removido, ou seja, em uma amostra de \textsl{\textbf{30}} genes sementes, temos \textsl{\textbf{30}} experimentos possíveis.
 
 A aplicação direta no sistema consiste em cada execução independente do programa. Onde cada experimento seja um conjunto formado da remoção de um gene semente da amostra original. Deve existir um experimento para cada gene semente removido, garantindo que cada gene semente tenha ficado de fora uma vez em relação a todos os experimentos.
 
@@ -94,7 +87,8 @@ A aplicação direta no sistema consiste em cada execução independente do prog
 %<Script Python GERA LOO>
 
 %
-Para ilustração do experimento, segue o exemplo: Suponha que exista um conjunto de \{\textsl{\textbf{5}} genes sementes \{\textsl{\textbf{1,2,3,4,5}}\}, suponha que deseja-se gerar todos os possíveis conjuntos de genes sementes utilizando o método de \textsl{\textbf{remoção de apenas um gene}}. A Tabela~\ref{table_loo_example} representa os conjuntos resultantes. Seja \{\textsl{\textbf{$S_i$}} o i-ésimo subconjunto gerado.
+Para ilustração do experimento, segue o exemplo: Suponha que exista um conjunto de \{\textsl{\textbf{5}} genes sementes \{\textsl{\textbf{1,2,3,4,5}}\}, suponha que deseja-se gerar todos os possíveis conjuntos de genes sementes utilizando o método de \textsl{\textbf{remoção de apenas um gene}}.
+A Tabela~\ref{table_loo_example} representa os conjuntos resultantes, onde \textsl{\textbf{$S_i$}} é o i-ésimo subconjunto gerado.
 
 %
 % ======================= TABELA LOO EXEMPLO ==================
@@ -195,7 +189,7 @@ Após os agrupamentos de dados de entrada serem preparados, o programa principal
 %
 % DETALHAR MAIS OS EXPERIMENTOS
 % 
-Nesta etapa, os experimentos encontram-se preparados para execução direta no programa principal que implementa o \textsl{\textbf{Método NERI}}.
+Nesta etapa, os experimentos encontram-se preparados para execução direta no programa principal que implementa o Método NERI.
 %
 Primeiramente, realizamos experimentos com a remoção de um único gene, para cada um dos \textsl{\textbf{30}} genes, o que totalizou \textsl{\textbf{30}} experimentos.
 %
@@ -203,7 +197,7 @@ Em seguida, realizamos \textsl{\textbf{50}} experimentos para cada percentual de
 
 %
 Devido ao fato de o programa realizar cálculos demorados, houve a necessidade de automatização do processo de execução, onde foi desenvolvido um \textsl{Script} em \textsl{Shell} (linha de comando Linux), para efetuação do trabalho, podendo ser encontrado no apêndice~\ref{shell_run_all}.
-Além disso, houve uma padronização nos diretórios utilizados pelo \textsl{\textbf{programa NERI}}, a fim de identificar os experimentos realizados, conforme pode ser observado na Tabela~\ref{}.
+Além disso, houve uma padronização nos diretórios utilizados pelo método NERI, a fim de identificar os experimentos realizados, conforme pode ser observado na Figura~\ref{tree_files} presente no Apêndice~\ref{appendice_ambient}.
 % DIRETORIO
 % INPUT | DADOS DE ENTRADO DO USUARIO X Y E Z
 % OUTPUT | RESULTADOS COM IDENTIFICADOR IGUAL AO DIRETORIO DE ENTRADA(+-)
@@ -215,13 +209,13 @@ Essa interface está em fase de finalização, faltando a documentação e algun
 
 \section{Validação}
 %
-Para garantir que não houvesse erro nos resultados devido a algum erro proveniente a configuração do ambiente de testes ou em relação as bases de dados utilizadas, foi executado o experimento original \textsl{\textbf{KATO}}. O resultado apresentado foi praticamente o mesmo, apresentando pequenos erros nas casas decimais \textsl{\textbf{$10^{-20}$}} provenientes por algum erro de arredondamento causado pela arquitetura do computador em questão, também pode ser levado em consideração atualizações das bibliotecas utilizadas pelo \textsl{\textbf{programa NERI}}. Estes erros foram muito baixos e não influenciaram no resultado final gerado pelo programa. O resultado comparativo dos experimentos bases podem ser observados na Tabela~\ref{}.
+Para garantir que não houvesse erro nos resultados devido a algum erro proveniente a configuração do ambiente de testes ou em relação as bases de dados utilizadas, foi executado o experimento original \textsl{\textbf{KATO}}. O resultado apresentado foi praticamente o mesmo, apresentando pequenos erros nas casas decimais \textsl{\textbf{$10^{-20}$}} provenientes por algum erro de arredondamento causado pela arquitetura do computador em questão, também pode ser levado em consideração atualizações das bibliotecas utilizadas pelo \textsl{\textbf{programa NERI}}. Estes erros foram muito baixos e não influenciaram no resultado final gerado pelo programa. %O resultado comparativo dos experimentos bases podem ser observados na Tabela~\ref{}.
 
 \section{Metologia de análise dos resultados}
 
 % ==> REESCREVER
 Após as execuções dos experimentos definidos, tivemos que definir as métricas para análise dos resultados.
-O \textsl{\textbf{Método NERI}} realiza uma priorização gênica, produzindo como saída dois escores de ranqueamento ($\Delta'$ e $X$) para cada gene.
+O Método NERI realiza uma priorização gênica, produzindo como saída dois escores de ranqueamento ($\Delta'$ e $X$) para cada gene.
 Assim, são produzidas duas listas (uma lista para o escore $X$ e outra para o escore $\Delta'$), cada uma contendo os genes que participaram dos caminhos mínimos selecionados. 
 
 Assim, após a remoção dos genes sementes, realizamos uma comparação de ambas as listas resultantes com a lista original.
@@ -243,7 +237,7 @@ Assim, a \textsl{\textbf{Correlação de Spearman}} não mostrou-se um bom fator
 Muitas vez um biólogo pode estar mais preocupado com a \textsl{\textbf{replicabilidade}} de um experimento do que com a ordem dos genes priorizados.
 Isto é, se os genes recuperados em um método são, em sua maioria, os mesmos recuperados em outro método.
 Desta forma, algumas vezes pode ser mais importante comparar a interseção das listas do que a ordem das mesmas.
-Assim, para a análise dos resultados, comparamos as interseções dos \textsl{\textbf{N}} primeiros genes de cada lista, variando \textsl{\textbf{N}} em \textsl{\textbf{\{10,20,50,100\}}}.
+Assim, para a análise dos resultados, comparamos as interseções dos \textsl{\textbf{N}} primeiros genes de cada lista, variando \textsl{\textbf{N}} em \textsl{\textbf{\{10,20,50,100,200\}}}.
 
 
 %====== FIM SPEARMAN
@@ -252,7 +246,7 @@ Foi utilizada a \textsl{\textbf{comparação por interseção}}, onde consiste e
 Sendo definido matematicamente por: 
 $I = {{A \cup B} \over |A|}$
 
-Este modelo de comparação beneficia as listas que possuírem mais elementos iguais, porém não penaliza as listas seccionadas que tiveram a ordem relativa dos elementos alterada. Este é um fator importante, pois o objetivo da análise é verificar a \textsl{\textbf{replicabilidade}} do experimento em condições diferenciadas, logo ligeiras variações de posicionamento dos elementos não são problemáticas, desde que os elementos das listas comparadas sejam iguais ou o possuírem uma grande interseção.
+Este modelo de comparação beneficia as listas que possuírem mais elementos iguais, porém não penaliza as listas seccionadas que tiveram a ordem relativa dos elementos alterada. Este é um fator importante, pois o objetivo da análise é verificar a \textsl{\textbf{replicabilidade}} do experimento em condições diferenciadas, logo ligeiras variações de posicionamento dos elementos não são problemáticas, desde que os elementos das listas comparadas sejam iguais ou o possuírem uma grande interseçã com o resultado otiginal.
 
 
 % ======================== EXEMPLOS TEX ========================

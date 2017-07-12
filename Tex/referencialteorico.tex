@@ -6,7 +6,7 @@
 \par
     Para melhor compreensão do conteúdo apresentado neste trabalho, este capítulo tem como objetivo explicar os fundamentos conceituais necessários para garantir a boa compreensão e evolução do conteúdo.
     
-\section{Redes}
+\section{Fundamentos Matemáticos}
 
 \subsection{Grafos}
 Grafos são formas de estruturação de dados ligados pertencentes ao mesmo conjunto. Um elemento recebe a denominação de nó ou vértice. As relações entre os nós são definidas por \textit{arestas}.
@@ -65,7 +65,7 @@ No \textbf{caminho} \textit{\{p,r,t,q\}} a \textbf{distância} entre \textit{p} 
 %Imagem
 
 
-\subsection{Hub}
+\subsection{Nó Hub}
 Hub é um nó que possui muitas arestas, ou seja, um nó que se liga a muitos outros nós \cite{Pavlopoulos2011}.
 Na imagem \ref{graph_hub} o \textsl{hub} é o nó \textsl{t}, ou seja, é o nó que possui mais arestas \textsl{6} do grafo.
 %
@@ -79,8 +79,9 @@ Na imagem \ref{graph_hub} o \textsl{hub} é o nó \textsl{t}, ou seja, é o nó 
 \end{figure}
 
 
-\subsection{Bridge}
-O quão ponte o nó é em relação a dois ou mais \textsl{Hubs}, ou seja, é uma medida que determina o quanto um nó liga dois grandes agrupamentos \cite{Hwang2006}. Na Figura~\ref{graph_bridge} o nó \textbf{\textsl{n16}} é um definido como bridge e os nós \textbf{\textsl{t}} e \textbf{\textsl{n13}} são \textsl{Hubs}, mesmo o nó \textsl{\textbf{n16}} não estando diretamente ligado nos nós \textsl{Hubs}, ele apresenta o comportamento de \textsl{Bridge} por estar conectando os dois grandes agrupamentos.
+\subsection{Nó Bridge}
+Nós \textsl{bridge} ou ponte são nós que conectam duas comunidades ou módulos de rede, ou seja, é uma medida que determina o quanto um nó liga dois grandes agrupamentos \cite{Hwang2006}.
+Na Figura~\ref{graph_bridge} o nó \textbf{\textsl{n16}} é um definido como \textsl{bridge} e os nós \textbf{\textsl{t}} e \textbf{\textsl{n13}} são \textsl{Hubs}, mesmo o nó \textsl{\textbf{n16}} não estando diretamente ligado nos nós \textsl{Hubs}, ele apresenta o comportamento de \textsl{Bridge} por estar conectando os dois grandes agrupamentos.
 %
 %Imagem - BRIGDE
 \begin{figure}[ht!]
@@ -96,23 +97,26 @@ Quando se trata de grafos o \textbf{caminho mínimo} é aquele que possui a meno
 %Imagem
 
 \subsection{Redes complexas}
-Redes são formas de representação de dados ligados. Partindo deste princípio, as redes complexas correspondem a grafos, de forma que representem e adotem os conceitos utilizados na \textsl{Teoria de Grafos}. Este conceito foi muito importante para representação de sistemas complexos, sendo que os mesmos podem ser representados em forma de grafos e consequentemente em rede \cite{Strogatz2001}. Porém, redes complexas devem apresentar estruturas topológicas não triviais, ou seja, possuírem um conjunto de vértices que sejam interconectados por arestas \cite{Barabasi2003}.
+
+O estudo de redes complexas é uma área relativamente recente e ativa da pesquisa científica e foi inspirada em grande parte pelo estudo empírico de redes do mundo real, como redes de computadores, redes tecnológicas, redes cerebrais e redes sociais.
+Uma rede complexa pode ser representada por um grafo características topológicas não triviais, ou seja, 
+características que não ocorrem em redes simples tais como reticulados, e nem ocorrem em gráficos aleatórios, mas geralmente ocorrem em modelos de sistemas reais.
+
+O conceito de redes complexas é muito importante para representação de sistemas complexos, sendo que os mesmos podem ser representados em forma de grafos e consequentemente em rede \cite{Strogatz2001}. Porém, redes complexas devem apresentar estruturas topológicas não triviais, ou seja, possuírem um conjunto de vértices que sejam interconectados por arestas \cite{Barabasi2003}.
 %
 
-O estudo de dados ligados tendo como a representação de intensidade e o sentido de suas conexões, faz com que muitos problemas do mundo real possam ser apresentados em redes complexas através de analogias. Esta possibilidade de representação, faz com que um problema aparentemente indescritível, seja modelado e representado por uma rede complexa, podendo assim ser estudado utilizando os ferramentais desenvolvidos para grafos e redes complexas. Isto auxilia a resolução do problema, em vista que, uma abordagem que permite o pesquisador utilizar conceitos já validados potencializa o estudo. 
+Uma característica importante das redes complexas, são as suas propriedades, como por exemplo, as medidas de centralidade que apontam comportamentos de um determinado nó ou um conjunto deles. Isto faz com que a análise destes dados representem algo direto no problema, visto que a rede é uma abstração do problema real \cite{Metz2007}.
+Tais características auxiliam na abstração do problema, onde o pesquisador interpreta cada comportamento encontrado na rede, uma aplicação no "\textsl{mundo real}" estudado.
 %
-
-Uma característica importante das redes complexas, são as suas propriedades, como por exemplo, as medidas de centralidade que apontam comportamentos para um determinado nó ou conjunto deles. Isto faz com que a análise destes dados representem algo direto no problema, em vista que a rede é uma abstração do problema real \cite{Metz2007}. Estas características auxiliam na abstração do problema, onde o pesquisador interpreta cada comportamento encontrado na rede, uma aplicação no "\textsl{mundo real}" estudado.
-%
-	
+Ao permitir que um problema seja modelado e representado por uma rede complexa, pode-se estudá-la utilizando os ferramentais desenvolvidos para grafos e redes complexas. Isto auxilia a resolução do problema, pois permite ao pesquisador utilizar conceitos já validados. 	
 
 % ===================== FUNDAMENTOS BIOLÓGICOS ========================== 
 
 \section{Fundamentos biológicos}
 
-\subsection{Dogma central da biologia}
+%\subsection{Dogma central da biologia}
 
-\textcolor{red}{Conceito de transcrição e fundamento da genômica ACHO IMPORTANTE ABORDAR}
+%\textcolor{red}{Conceito de transcrição e fundamento da genômica ACHO IMPORTANTE ABORDAR}
 
 %imagem
 
@@ -141,40 +145,29 @@ O conceito de co-expressão é a correlação de transcritos gênicos, onde dete
 
 \section{Rede PPI}
 
-Redes PPI (Protein-protein Interaction), são redes que representam dados de interação entre diferentes proteínas que indicam como as mesmas ativam ou não processos biológicos dentro das células \cite{Pavlopoulos2011}. Apesar das interações entre diferentes proteínas e suas respectivas sequencias gênicas estarem praticamente todas descobertas, ainda não se sabe completamente suas funções moleculares. Através da modelagem das interações em rede, é possível inferir funções proteicas com a interação entre outras biomoléculas.
+Redes PPI (Protein-protein Interaction), são redes que representam dados de interação entre diferentes proteínas que indicam como as mesmas ativam ou não processos biológicos dentro das células \cite{Pavlopoulos2011}.
+Apesar das interações entre diferentes proteínas e suas respectivas sequencias gênicas estarem praticamente todas descobertas, ainda não se sabe completamente suas funções moleculares.
+Através da modelagem das interações em rede, é possível inferir funções proteicas com a interação entre outras biomoléculas.
 %
 
 Assim como as interações entre proteínas podem ser mapeadas em rede, surge um novo conceito denominada \textsl{Network Medicine} por \cite{Barabasi2011}, onde o autor aborda doenças humanas mapeando-as em redes complexas. Desta forma, pode-se estudar não só os fatores de complexidade molecular relacionados a uma determinada doença, mas também é possível analisar os fenótipos relacionados, levando à possibilidade de encontrar uma via biológica relacionada a doença.
 
 \section{Redes Biológicas}
 
-\subsection{Representação de genes em rede}
-\textcolor{red}{=== Texto ===}
+%\subsection{Representação de genes em rede}
+%\textcolor{red}{=== Texto ===}
 
-\textcolor{red}{=== ORGANIZAR E FALAR UM POUCO DE CADA UM DESTES TRABALHOS ===}
-
-	Using graph theory to analyze biological networks
-	\cite{Pavlopoulos2011}
-	
-	
-	Este paper contém os conceitos fundamentais de redes biológicas e uso de grafos para sua análise.
-<Descrever artigo>
-
-
-	An Integrative Systems Medicine Approach to Mapping Human Metabolic Diseases
-	\cite{Barabasi2011}
-	
-	
-	
-	Exploring the human diseasome: The human disease network 
-	\cite{Goh2012}
-	
-	
-	Network Medicine
-	\cite{Barabasi2003}
-	
-	Neste trabalho é definido o conceito de Network Medicine, este no qual baseia-se o método NERI.
-<Descrever artigo>
+%\textcolor{red}{=== ORGANIZAR E FALAR UM POUCO DE CADA UM DESTES TRABALHOS ===}
+%	Using graph theory to analyze biological networks
+%	\cite{Pavlopoulos2011}
+%	An Integrative Systems Medicine Approach to Mapping Human Metabolic Diseases
+%	\cite{Barabasi2011}
+%	Exploring the human diseasome: The human disease network 
+%	\cite{Goh2012}
+%	Network Medicine
+%	\cite{Barabasi2003}	
+%	Neste trabalho é definido o conceito de Network Medicine, este no qual baseia-se o método NERI.
+%<Descrever artigo>
 
 
 
@@ -194,15 +187,26 @@ Em grafos grandes e complexos, as relações entre os nós e suas conexões gera
 surge a necessidade de identificar quais são os nós mais importantes da rede em relação aos nós sementes. A necessidade de determinar esta importância é denominada \textsl{Importância Relativa}. 
 %
 
-Este é um tema que gerou publicações importantes no estudo de redes complexas. Um destes estudos é do \cite{White2003}, que propuseram diferentes maneiras de eleger os nós mais importantes de uma rede. Assim como a pesquisa no qual este trabalho propõe a validação o \cite{NERI}, utiliza destes conceitos para eleger os genes mais importantes relacionados a doença em estudo.
+Este é um tema que gerou publicações importantes no estudo de redes complexas. Um destes estudos é do \cite{White2003}, que propuseram diferentes maneiras de eleger os nós mais importantes de uma rede. Assim como a pesquisa no qual este trabalho propõe a validação o \cite{Simoes2015}, utiliza destes conceitos para eleger os genes mais importantes relacionados a doença em estudo.
 %
 
-Importância relativa é essencial na abordagem de redes complexas, devido ao fato de elencar os nós mais importantes baseados em um conhecimento prévio. Este conhecimento prévio é modelado em nós sementes, ou seja, alguns nós que previamente são conhecidos por sua importância, são utilizados como ponto de partida e elementos chaves para a busca de outros nós importantes na rede.
-%
+Importância relativa é essencial na abordagem de redes complexas, devido ao fato de elencar os nós mais importantes baseados em um conhecimento prévio. Este conhecimento prévio é modelado em nós sementes, ou seja, alguns nós que previamente são conhecidos por sua importância, são utilizados como ponto de partida e elementos chaves para a busca de outros nós importantes na rede. Este estudo baseia-se na importância relativa individual, ou seja, a importância de um nó em relação ao conjunto.
 
-Este estudo baseia-se na importância relativa individual, ou seja, a importância de um nó em relação ao conjunto. Assim sendo, dado um grafo \textsl{G(N,A)} e o conjunto \textsl{S} \in \textsl{N} sendo os nós sementes, para calcular a importância relativa de um nó \textsl{p} \in \textsl{N} em relação ao conjunto \textsl{S} é dada pela equação \ref{}.
+%Assim sendo, dado um grafo \textsl{G(N,A)} e o conjunto ${{S} \in {N}}$  sendo os nós sementes, para calcular a importância relativa de um nó ${{p} \in {N}}$ em relação ao conjunto \textsl{S} é dada pela equação na Figura~\ref{ir_function}.
+
 %
-%%
+%Imagem - calculo
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=50mm]{Images/ir_function.png}
+%\caption {Equação de importância relativa
+%\label{ir_function}}
+%\flushleft{Fonte: Produzido pelos autores.}
+%\end{figure}
+
+
+%
+%%$I = {{A \cup B} \over |A|}$
 % EQUAÇÂO (2.7 -> NERY)
 %
 
@@ -213,13 +217,7 @@ Um ponto que deve ser ressaltado é no \textsl{Método NERI}, onde o autor aplic
 
 % ==== ANÁLISE DE ROBUSTEZ ====
 
-\section{Métodos de análise de robustez}
-
-\subsection{Conceito de robustez}
-\textcolor{red}{=== Texto ===}
-
-%\subsection{Importância da análise}
-%\textcolor{red}{=== Texto ===}
+\section{Análise de robustez}
 
 \subsection{Método K-Fold Cross-Validation}
 
@@ -255,22 +253,16 @@ Após a separação dos subconjuntos, uma única execução do modelo é feita, 
 
 % ==== TRABALHOS CORRELATOS ====
 
-\section{Trabalhos correlatos}
+\section{Método NERI}
 
-\subsection{Tese de doutorado Sérgio Nery Simões}
-\cite{NERI}
-Este trabalho é a referencia principal do meu projeto, pelo fato do método no qual analisei a robustez é apresentado e descrito nele.
+Para entender doenças complexas, é necessário encontrar os genes que se relacionam com a mesma.
+Com a evolução em larga escala das tecnologias de sequenciamento do genoma e das medições de transcritos, assim como o conhecimento da interação presente entre proteína-proteína (PPI – \textsl{Protein Protein Interaction}), a pesquisa sobre doenças complexas vêm se tornando cada vez mais comum.
+Ao basear-se no paradigma do \textsl{Network Medicine}, as redes de interação proteína-proteína têm sido utilizadas para enfatizar os genes relacionados à doenças complexas levando em conta fatores topológicos. 
 
-Para entender doenças complexas, é necessário encontrar os genes que se relacionam com a mesma. Com a evolução em larga escala das tecnologias de sequenciamento do genoma e das medições de transcritos, assim como o conhecimento da interação presente entre proteína-proteína (PPI – Protein Protein Interaction), a pesquisa sobre doenças complexas vêm se tornando cada vez mais comum. Ao basear-se no paradigma do Network Medicine, as redes de interação proteína-proteína têm sido utilizadas para enfatizar os genes relacionados à doenças complexas levando em conta fatores topológicos. Porém este método é afetado diretamente pela literatura disponível, onde proteínas mais estudadas tendem a ter mais conexões na rede, fazendo com que diminua a qualidade dos resultados. Sendo assim, métodos que utilizam somente redes PPI não fornecem dados dinâmicos e específicos, dado que a topologia da rede não é exclusiva para uma única doença. No trabalho em questão, foi desenvolvido um método que prioriza genes e vias biológicas relacionados a uma dada doença complexa, através da abordagem de não somente redes PPI mas também transcritômica e genômica, sendo os dados integrados em uma única rede. Após a integração e construção da rede, aplicou-se o conceito da Network Medicine, encontrando caminhos mínimos que possuam maior co-expressão entre seus genes. Com este modelo foi desenvolvido dois escores de ranqueamento, onde um prioriza genes com maior alteração entre suas pontuações em cada condição, e o outro privilegia os genes com a maior soma destas pontuações. Desta forma a aplicação do método em a três estudos envolvendo de expressão da doença esquizofrenia, recuperou com sucesso genes diferencialmente co-expressos em duas condições diferentes, e juntamente evitou os erros de literatura presentes na rede PPI. Em paralelo, melhorou substancialmente a replicação de resultados pelo método aplicado aos três estudos, onde por métodos convencionais, não atingiam uma replicabilidade satisfatória.
+O método NERI \cite{Simoes2015} procurou resolver o problema da replicabilidade através da integração de dados biológicos e as hipóteses da \textsl{Network Medicine}.
+Neste projeto, analisamos a robustez deste método com relação aos genes sementes.
+%
+Porém este método é afetado diretamente pela literatura disponível, onde proteínas mais estudadas tendem a ter mais conexões na rede, fazendo com que diminua a qualidade dos resultados. Sendo assim, métodos que utilizam somente redes PPI não fornecem dados dinâmicos e específicos, dado que a topologia da rede não é exclusiva para uma única doença. No trabalho em questão, foi desenvolvido um método que prioriza genes e vias biológicas relacionados a uma dada doença complexa, através da abordagem de não somente redes PPI mas também transcrissômica e genômica, sendo os dados integrados em uma única rede. Após a integração e construção da rede, aplicou-se o conceito da \textsl{Network Medicine}, encontrando caminhos mínimos que possuam maior co-expressão entre seus genes. Com este modelo foi desenvolvido dois escores de ranqueamento, onde um prioriza genes com maior alteração entre suas pontuações em cada condição, e o outro privilegia os genes com a maior soma destas pontuações. Desta forma a aplicação do método em a três estudos envolvendo de expressão da doença esquizofrenia, recuperou com sucesso genes diferencialmente co-expressos em duas condições diferentes, e juntamente evitou os erros de literatura presentes na rede PPI. Em paralelo, melhorou substancialmente a replicação de resultados pelo método aplicado aos três estudos, onde por métodos convencionais, não atingiam uma replicabilidade satisfatória.
 
-	
-%\subsection{Biologia}
-
-%	\subsubsection{DNA methylation: a form of epigenetic control of gene expression}
-%	\cite{Lim-Derek}
-	
-%	\subsubsection{DNA methylation and its basic function}
-%	\cite{Moore-lisa}
-	
 
 
